@@ -1,879 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dispatch — UI Kit</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dispatch — Daily Digest</title>
   <link rel="stylesheet" href="../../colors_and_type.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: var(--font-body);
-      background: var(--surface-1);
-      color: var(--text-0);
-      line-height: var(--leading-normal);
-    }
-    
-    /* Layout */
-    .app {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: var(--z-sticky);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: var(--sp-4) var(--sp-6);
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line-1);
-    }
-    
-    .logo {
-      font-family: var(--font-display);
-      font-size: var(--text-2xl);
-      font-style: italic;
-      color: var(--text-0);
-      text-decoration: none;
-    }
-    
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: var(--sp-6);
-    }
-    
-    .nav-link {
-      font-size: var(--text-sm);
-      font-weight: var(--weight-medium);
-      color: var(--text-1);
-      text-decoration: none;
-      padding: var(--sp-2) 0;
-      position: relative;
-      transition: color var(--duration-fast);
-      cursor: pointer;
-    }
-    
-    .nav-link:hover, .nav-link.active {
-      color: var(--text-0);
-    }
-    
-    .nav-link.active::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--primary);
-    }
-    
-    .nav-cta {
-      padding: var(--sp-2) var(--sp-4);
-      background: var(--primary);
-      color: white;
-      font-size: var(--text-sm);
-      font-weight: var(--weight-medium);
-      border-radius: var(--radius-md);
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: background var(--duration-fast);
-    }
-    
-    .nav-cta:hover {
-      background: var(--primary-3);
-    }
-    
-    .main {
-      flex: 1;
-      display: flex;
-    }
-    
-    .sidebar {
-      width: 260px;
-      background: var(--surface-0);
-      border-right: 1px solid var(--line-1);
-      padding: var(--sp-6);
-    }
-    
-    .sidebar-section {
-      margin-bottom: var(--sp-8);
-    }
-    
-    .sidebar-title {
-      font-size: var(--text-xs);
-      font-weight: var(--weight-semibold);
-      color: var(--text-2);
-      text-transform: uppercase;
-      letter-spacing: var(--tracking-wider);
-      margin-bottom: var(--sp-3);
-    }
-    
-    .sidebar-link {
-      display: flex;
-      align-items: center;
-      gap: var(--sp-3);
-      padding: var(--sp-2) var(--sp-3);
-      font-size: var(--text-sm);
-      color: var(--text-1);
-      text-decoration: none;
-      border-radius: var(--radius-sm);
-      transition: all var(--duration-fast);
-      cursor: pointer;
-    }
-    
-    .sidebar-link:hover {
-      background: var(--surface-1);
-      color: var(--text-0);
-    }
-    
-    .sidebar-link.active {
-      background: var(--primary-0);
-      color: var(--primary);
-    }
-    
-    .content {
-      flex: 1;
-      padding: var(--sp-8);
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    /* Hero */
-    .hero {
-      text-align: center;
-      padding: var(--sp-16) var(--sp-8);
-    }
-    
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: var(--text-5xl);
-      line-height: var(--leading-tight);
-      margin-bottom: var(--sp-4);
-    }
-    
-    .hero-subtitle {
-      font-size: var(--text-xl);
-      color: var(--text-1);
-      margin-bottom: var(--sp-8);
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--sp-3);
-      padding: var(--sp-4) var(--sp-8);
-      background: var(--accent);
-      color: white;
-      font-size: var(--text-base);
-      font-weight: var(--weight-semibold);
-      border-radius: var(--radius-md);
-      border: none;
-      cursor: pointer;
-      transition: all var(--duration-fast);
-      text-decoration: none;
-    }
-    
-    .hero-cta:hover {
-      background: var(--accent-2);
-      transform: translateY(-2px);
-      box-shadow: var(--sh-md);
-    }
-    
-    /* Story Cards */
-    .story-card {
-      background: var(--surface-0);
-      border: 1px solid var(--line-2);
-      border-radius: var(--radius-md);
-      padding: var(--sp-6);
-      margin-bottom: var(--sp-6);
-      cursor: pointer;
-      transition: all var(--duration-fast);
-    }
-    
-    .story-card:hover {
-      box-shadow: var(--sh-md);
-      transform: translateY(-2px);
-      border-color: var(--line-3);
-    }
-    
-    .story-meta {
-      display: flex;
-      align-items: center;
-      gap: var(--sp-2);
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      color: var(--text-2);
-      margin-bottom: var(--sp-3);
-    }
-    
-    .story-title {
-      font-family: var(--font-display);
-      font-size: var(--text-2xl);
-      line-height: var(--leading-tight);
-      color: var(--text-0);
-      margin-bottom: var(--sp-3);
-    }
-    
-    .story-summary {
-      font-size: var(--text-base);
-      line-height: var(--leading-relaxed);
-      color: var(--text-1);
-      margin-bottom: var(--sp-4);
-    }
-    
-    .story-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: var(--sp-4);
-      border-top: 1px solid var(--line-1);
-    }
-    
-    .story-source {
-      font-size: var(--text-sm);
-      color: var(--text-2);
-    }
-    
-    .story-actions {
-      display: flex;
-      gap: var(--sp-2);
-    }
-    
-    .icon-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border: none;
-      background: transparent;
-      color: var(--text-2);
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: all var(--duration-fast);
-    }
-    
-    .icon-btn:hover {
-      background: var(--surface-1);
-      color: var(--text-0);
-    }
-    
-    .icon-btn.active {
-      color: var(--primary);
-    }
-    
-    /* Date header */
-    .date-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: var(--sp-6);
-      padding-bottom: var(--sp-4);
-      border-bottom: 1px solid var(--line-1);
-    }
-    
-    .date-title {
-      font-family: var(--font-display);
-      font-size: var(--text-3xl);
-      color: var(--text-0);
-    }
-    
-    .date-meta {
-      font-family: var(--font-mono);
-      font-size: var(--text-sm);
-      color: var(--text-2);
-    }
-    
-    /* Empty state */
-    .empty-state {
-      text-align: center;
-      padding: var(--sp-16);
-    }
-    
-    .empty-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto var(--sp-4);
-      background: var(--surface-1);
-      border-radius: var(--radius-lg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-3);
-    }
-    
-    .empty-title {
-      font-size: var(--text-xl);
-      font-weight: var(--weight-semibold);
-      margin-bottom: var(--sp-2);
-    }
-    
-    .empty-text {
-      font-size: var(--text-base);
-      color: var(--text-2);
-      max-width: 400px;
-      margin: 0 auto var(--sp-6);
-    }
-    
-    /* Section visibility */
-    .section {
-      display: none;
-    }
-    
-    .section.active {
-      display: block;
-    }
-    
-    /* Form elements */
-    .form-group {
-      margin-bottom: var(--sp-5);
-    }
-    
-    .form-label {
-      display: block;
-      font-size: var(--text-sm);
-      font-weight: var(--weight-medium);
-      margin-bottom: var(--sp-2);
-    }
-    
-    .input {
-      width: 100%;
-      padding: var(--sp-3) var(--sp-4);
-      font-family: var(--font-body);
-      font-size: var(--text-base);
-      color: var(--text-0);
-      background: var(--surface-0);
-      border: 1px solid var(--line-2);
-      border-radius: var(--radius-sm);
-      transition: all var(--duration-fast);
-    }
-    
-    .input:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px var(--primary-0);
-    }
-    
-    .select-wrapper {
-      position: relative;
-    }
-    
-    .select {
-      width: 100%;
-      padding: var(--sp-3) var(--sp-4);
-      padding-right: var(--sp-10);
-      font-family: var(--font-body);
-      font-size: var(--text-base);
-      color: var(--text-0);
-      background: var(--surface-0);
-      border: 1px solid var(--line-2);
-      border-radius: var(--radius-sm);
-      appearance: none;
-      cursor: pointer;
-    }
-    
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--sp-2);
-      padding: var(--sp-3) var(--sp-5);
-      font-family: var(--font-body);
-      font-size: var(--text-sm);
-      font-weight: var(--weight-medium);
-      border: none;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all var(--duration-fast);
-    }
-    
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-    
-    .btn-primary:hover {
-      background: var(--primary-3);
-    }
-    
-    .btn-accent {
-      background: var(--accent);
-      color: white;
-    }
-    
-    .btn-accent:hover {
-      background: var(--accent-2);
-    }
-    
-    .btn-secondary {
-      background: var(--surface-1);
-      color: var(--text-0);
-      border: 1px solid var(--line-2);
-    }
-    
-    .btn-secondary:hover {
-      background: var(--surface-2);
-    }
-    
-    .checkbox-group {
-      display: flex;
-      flex-direction: column;
-      gap: var(--sp-3);
-    }
-    
-    .checkbox-label {
-      display: flex;
-      align-items: center;
-      gap: var(--sp-3);
-      cursor: pointer;
-      font-size: var(--text-sm);
-      color: var(--text-1);
-    }
-    
-    .checkbox-input {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--primary);
-    }
-    
-    /* Tabs */
-    .tabs {
-      display: flex;
-      gap: var(--sp-1);
-      padding: var(--sp-1);
-      background: var(--surface-1);
-      border-radius: var(--radius-md);
-      width: fit-content;
-      margin-bottom: var(--sp-6);
-    }
-    
-    .tab {
-      padding: var(--sp-2) var(--sp-4);
-      font-size: var(--text-sm);
-      font-weight: var(--weight-medium);
-      color: var(--text-2);
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: all var(--duration-fast);
-      border: none;
-      background: transparent;
-    }
-    
-    .tab:hover {
-      color: var(--text-0);
-    }
-    
-    .tab.active {
-      background: white;
-      color: var(--text-0);
-      box-shadow: var(--sh-xs);
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .sidebar {
-        display: none;
-      }
-      
-      .nav-links {
-        display: none;
-      }
-      
-      .hero-title {
-        font-size: var(--text-3xl);
-      }
-      
-      .content {
-        padding: var(--sp-4);
-      }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app">
-    <!-- Header -->
-    <header class="header">
-      <a href="#" class="logo" onclick="showSection('today')">Dispatch</a>
-      <nav class="nav-links">
-        <a class="nav-link active" onclick="showSection('today')">Today</a>
-        <a class="nav-link" onclick="showSection('archive')">Archive</a>
-        <a class="nav-link" onclick="showSection('settings')">Settings</a>
-        <button class="nav-cta" onclick="showSection('subscribe')">Subscribe</button>
-      </nav>
-    </header>
-    
-    <div class="main">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <div class="sidebar-section">
-          <div class="sidebar-title">Your Digest</div>
-          <a class="sidebar-link active" onclick="showSection('today')">
-            <i data-lucide="newspaper" style="width: 16px; height: 16px;"></i>
-            <span>Today's Stories</span>
-          </a>
-          <a class="sidebar-link" onclick="showSection('saved')">
-            <i data-lucide="bookmark" style="width: 16px; height: 16px;"></i>
-            <span>Saved</span>
-          </a>
-          <a class="sidebar-link" onclick="showSection('stats')">
-            <i data-lucide="bar-chart-2" style="width: 16px; height: 16px;"></i>
-            <span>Stats</span>
-          </a>
-        </div>
-        <div class="sidebar-section">
-          <div class="sidebar-title">Topics</div>
-          <a class="sidebar-link">
-            <i data-lucide="globe" style="width: 16px; height: 16px;"></i>
-            <span>World</span>
-          </a>
-          <a class="sidebar-link">
-            <i data-lucide="cpu" style="width: 16px; height: 16px;"></i>
-            <span>Technology</span>
-          </a>
-          <a class="sidebar-link">
-            <i data-lucide="flask-conical" style="width: 16px; height: 16px;"></i>
-            <span>Science</span>
-          </a>
-          <a class="sidebar-link">
-            <i data-lucide="briefcase" style="width: 16px; height: 16px;"></i>
-            <span>Business</span>
-          </a>
-        </div>
-      </aside>
-      
-      <!-- Content -->
-      <main class="content">
-        <!-- Today Section -->
-        <section id="today" class="section active">
-          <div class="date-header">
-            <h1 class="date-title">Monday, January 15</h1>
-            <span class="date-meta">8 stories · 12 min read</span>
-          </div>
-          
-          <div class="tabs">
-            <button class="tab active">All Stories</button>
-            <button class="tab">Unread</button>
-            <button class="tab">Saved</button>
-          </div>
-          
-          <article class="story-card">
-            <div class="story-meta">
-              <span>The Guardian</span>
-              <span>·</span>
-              <span>5 min read</span>
-            </div>
-            <h2 class="story-title">Climate Summit Reaches Historic Agreement on Emissions</h2>
-            <p class="story-summary">World leaders have agreed to binding emissions targets that exceed previous commitments, marking a significant shift in global climate policy after years of deadlock. The agreement includes...</p>
-            <div class="story-footer">
-              <span class="story-source">12 sources curated</span>
-              <div class="story-actions">
-                <button class="icon-btn" onclick="toggleBookmark(this)">
-                  <i data-lucide="bookmark" style="width: 16px; height: 16px;"></i>
-                </button>
-                <button class="icon-btn">
-                  <i data-lucide="share-2" style="width: 16px; height: 16px;"></i>
-                </button>
-                <button class="icon-btn">
-                  <i data-lucide="external-link" style="width: 16px; height: 16px;"></i>
-                </button>
-              </div>
-            </div>
-          </article>
-          
-          <article class="story-card">
-            <div class="story-meta">
-              <span>BBC News</span>
-              <span>·</span>
-              <span>3 min read</span>
-            </div>
-            <h2 class="story-title">AI Breakthrough Enables Real-Time Translation of Ancient Languages</h2>
-            <p class="story-summary">Researchers have developed a neural network capable of translating previously undeciphered ancient scripts with 94% accuracy, opening new possibilities for understanding lost civilizations...</p>
-            <div class="story-footer">
-              <span class="story-source">8 sources curated</span>
-              <div class="story-actions">
-                <button class="icon-btn" onclick="toggleBookmark(this)">
-                  <i data-lucide="bookmark" style="width: 16px; height: 16px;"></i>
-                </button>
-                <button class="icon-btn">
-                  <i data-lucide="share-2" style="width: 16px; height: 16px;"></i>
-                </button>
-                <button class="icon-btn">
-                  <i data-lucide="external-link" style="width: 16px; height: 16px;"></i>
-                </button>
-              </div>
-            </div>
-          </article>
-          
-          <article class="story-card">
-            <div class="story-meta">
-              <span>Reuters</span>
-              <span>·</span>
-              <span>4 min read</span>
-            </div>
-            <h2 class="story-title">Central Banks Signal Coordinated Response to Inflation Concerns</h2>
-            <p class="story-summary">Major central banks have indicated they will take a coordinated approach to managing inflation, avoiding the competitive rate hikes that have destabilized markets in previous cycles...</p>
-            <div class="story-footer">
-              <span class="story-source">15 sources curated</span>
-              <div class="story-actions">
-                <button class="icon-btn" onclick="toggleBookmark(this)">
-                  <i data-lucide="bookmark" style="width: 16px; height: 16px;"></i>
-                </button>
-                <button class="icon-btn">
-                  <i data-lucide="share-2" style="width: 16px; height: 16px;"></i>
-                </button>
-                <button class="icon-btn">
-                  <i data-lucide="external-link" style="width: 16px; height: 16px;"></i>
-                </button>
-              </div>
-            </div>
-          </article>
-        </section>
-        
-        <!-- Saved Section (Empty State) -->
-        <section id="saved" class="section">
-          <div class="empty-state">
-            <div class="empty-icon">
-              <i data-lucide="bookmark" style="width: 32px; height: 32px;"></i>
-            </div>
-            <h2 class="empty-title">No saved stories yet</h2>
-            <p class="empty-text">Stories you bookmark will appear here for easy access later. Click the bookmark icon on any story to save it.</p>
-            <button class="btn btn-primary" onclick="showSection('today')">Browse Today's Stories</button>
-          </div>
-        </section>
-        
-        <!-- Settings Section -->
-        <section id="settings" class="section">
-          <h1 class="date-title" style="margin-bottom: var(--sp-8);">Settings</h1>
-          
-          <div style="background: var(--surface-0); border: 1px solid var(--line-2); border-radius: var(--radius-md); padding: var(--sp-6); margin-bottom: var(--sp-6);">
-            <h3 style="font-size: var(--text-lg); font-weight: var(--weight-semibold); margin-bottom: var(--sp-6);">Delivery Preferences</h3>
-            
-            <div class="form-group">
-              <label class="form-label">Delivery time</label>
-              <div class="select-wrapper">
-                <select class="select">
-                  <option>7:00 AM</option>
-                  <option>8:00 AM</option>
-                  <option selected>9:00 AM</option>
-                  <option>6:00 PM</option>
-                </select>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label">Timezone</label>
-              <div class="select-wrapper">
-                <select class="select">
-                  <option>Pacific Time (PT)</option>
-                  <option selected>Eastern Time (ET)</option>
-                  <option>Central European Time (CET)</option>
-                  <option>Greenwich Mean Time (GMT)</option>
-                </select>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label class="form-label">Topics</label>
-              <div class="checkbox-group">
-                <label class="checkbox-label">
-                  <input type="checkbox" class="checkbox-input" checked>
-                  <span>World News</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" class="checkbox-input" checked>
-                  <span>Technology</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" class="checkbox-input" checked>
-                  <span>Science</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" class="checkbox-input">
-                  <span>Business</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" class="checkbox-input">
-                  <span>Politics</span>
-                </label>
-              </div>
-            </div>
-            
-            <div style="display: flex; gap: var(--sp-3); margin-top: var(--sp-6);">
-              <button class="btn btn-primary">Save Changes</button>
-              <button class="btn btn-secondary">Cancel</button>
-            </div>
-          </div>
-          
-          <div style="background: var(--surface-0); border: 1px solid var(--line-2); border-radius: var(--radius-md); padding: var(--sp-6);">
-            <h3 style="font-size: var(--text-lg); font-weight: var(--weight-semibold); margin-bottom: var(--sp-4);">Account</h3>
-            <div class="form-group">
-              <label class="form-label">Email address</label>
-              <input type="email" class="input" value="user@example.com" readonly>
-            </div>
-            <div style="display: flex; gap: var(--sp-3); margin-top: var(--sp-4);">
-              <button class="btn btn-secondary">Change Password</button>
-              <button class="btn btn-secondary" style="color: var(--error);">Delete Account</button>
-            </div>
-          </div>
-        </section>
-        
-        <!-- Subscribe Section -->
-        <section id="subscribe" class="section">
-          <div class="hero">
-            <h1 class="hero-title">Stay Informed,<br>Not Overwhelmed</h1>
-            <p class="hero-subtitle">Your daily digest of world news, curated and delivered by AI. 8 stories that matter, in 5 minutes.</p>
-            <button class="hero-cta" onclick="showSection('today')">
-              <span>Get Dispatch Free</span>
-              <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
-            </button>
-          </div>
-          
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--sp-6); margin-top: var(--sp-8);">
-            <div style="background: var(--surface-0); border: 1px solid var(--line-2); border-radius: var(--radius-md); padding: var(--sp-6);">
-              <div style="font-size: var(--text-3xl); margin-bottom: var(--sp-2);">📰</div>
-              <h3 style="font-size: var(--text-lg); font-weight: var(--weight-semibold); margin-bottom: var(--sp-2);">Curated Stories</h3>
-              <p style="font-size: var(--text-sm); color: var(--text-2); line-height: var(--leading-relaxed);">Hand-picked from 12+ reputable sources. No clickbait, no noise.</p>
-            </div>
-            <div style="background: var(--surface-0); border: 1px solid var(--line-2); border-radius: var(--radius-md); padding: var(--sp-6);">
-              <div style="font-size: var(--text-3xl); margin-bottom: var(--sp-2);">⚡</div>
-              <h3 style="font-size: var(--text-lg); font-weight: var(--weight-semibold); margin-bottom: var(--sp-2);">5-Minute Read</h3>
-              <p style="font-size: var(--text-sm); color: var(--text-2); line-height: var(--leading-relaxed);">AI-summarized to respect your time. Get the essentials, fast.</p>
-            </div>
-            <div style="background: var(--surface-0); border: 1px solid var(--line-2); border-radius: var(--radius-md); padding: var(--sp-6);">
-              <div style="font-size: var(--text-3xl); margin-bottom: var(--sp-2);">🎯</div>
-              <h3 style="font-size: var(--text-lg); font-weight: var(--weight-semibold); margin-bottom: var(--sp-2);">Personalized</h3>
-              <p style="font-size: var(--text-sm); color: var(--text-2); line-height: var(--leading-relaxed);">Choose your topics and delivery time. Your news, your way.</p>
-            </div>
-          </div>
-        </section>
-        
-        <!-- Archive Section -->
-        <section id="archive" class="section">
-          <h1 class="date-title" style="margin-bottom: var(--sp-6);">Archive</h1>
-          
-          <div style="display: flex; gap: var(--sp-3); margin-bottom: var(--sp-6);">
-            <div class="form-group" style="flex: 1; margin: 0;">
-              <input type="text" class="input" placeholder="Search stories...">
-            </div>
-            <div class="select-wrapper" style="width: 150px;">
-              <select class="select">
-                <option>All Topics</option>
-                <option>World</option>
-                <option>Tech</option>
-                <option>Science</option>
-              </select>
-            </div>
-          </div>
-          
-          <div style="background: var(--surface-0); border: 1px solid var(--line-2); border-radius: var(--radius-md); padding: var(--sp-4);">
-            <div style="display: flex; align-items: center; gap: var(--sp-4); padding: var(--sp-3) 0; border-bottom: 1px solid var(--line-1);">
-              <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-2); width: 80px;">Jan 14</span>
-              <span style="font-size: var(--text-sm); flex: 1;">SpaceX Launches Next-Gen Satellite Constellation</span>
-              <span style="font-size: var(--text-xs); color: var(--text-2);">Tech · 4 min</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: var(--sp-4); padding: var(--sp-3) 0; border-bottom: 1px solid var(--line-1);">
-              <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-2); width: 80px;">Jan 14</span>
-              <span style="font-size: var(--text-sm); flex: 1;">New Renewable Energy Record Set in Europe</span>
-              <span style="font-size: var(--text-xs); color: var(--text-2);">Climate · 5 min</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: var(--sp-4); padding: var(--sp-3) 0; border-bottom: 1px solid var(--line-1);">
-              <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-2); width: 80px;">Jan 13</span>
-              <span style="font-size: var(--text-sm); flex: 1;">Major Healthcare Reform Bill Passes Senate</span>
-              <span style="font-size: var(--text-xs); color: var(--text-2);">Politics · 6 min</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: var(--sp-4); padding: var(--sp-3) 0;">
-              <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-2); width: 80px;">Jan 13</span>
-              <span style="font-size: var(--text-sm); flex: 1;">Quantum Computing Milestone Achieved</span>
-              <span style="font-size: var(--text-xs); color: var(--text-2);">Science · 3 min</span>
-            </div>
-          </div>
-        </section>
-        
-        <!-- Stats Section -->
-        <section id="stats" class="section">
-          <h1 class="date-title" style="margin-bottom: var(--sp-6);">Your Stats</h1>
-          
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--sp-4); margin-bottom: var(--sp-8);">
-            <div style="background: var(--surface-0); border: 1px solid var(--line-2); border-radius: var(--radius-md); padding: var(--sp-5); text-align: center;">
-              <div style="font-size: var(--text-3xl); font-weight: var(--weight-bold); color: var(--text-0); margin-bottom: var(--sp-1);">247</div>
-              <div style="font-size: var(--text-xs); color: var(--text-2); text-transform: uppercase; letter-spacing: var(--tracking-wider);">Stories Read</div>
-            </div>
-            <div style="background: var(--surface-0); border: 1px solid var(--line-2); border-radius: var(--radius-md); padding: var(--sp-5); text-align: center;">
-              <div style="font-size: var(--text-3xl); font-weight: var(--weight-bold); color: var(--text-0); margin-bottom: var(--sp-1);">8</div>
-              <div style="font-size: var(--text-xs); color: var(--text-2); text-transform: uppercase; letter-spacing: var(--tracking-wider);">Day Streak</div>
-            </div>
-            <div style="background: var(--surface-0); border: 1px solid var(--line-2); border-radius: var(--radius-md); padding: var(--sp-5); text-align: center;">
-              <div style="font-size: var(--text-3xl); font-weight: var(--weight-bold); color: var(--text-0); margin-bottom: var(--sp-1);">42m</div>
-              <div style="font-size: var(--text-xs); color: var(--text-2); text-transform: uppercase; letter-spacing: var(--tracking-wider);">Time Saved</div>
-            </div>
-            <div style="background: var(--surface-0); border: 1px solid var(--line-2); border-radius: var(--radius-md); padding: var(--sp-5); text-align: center;">
-              <div style="font-size: var(--text-3xl); font-weight: var(--weight-bold); color: var(--text-0); margin-bottom: var(--sp-1);">156</div>
-              <div style="font-size: var(--text-xs); color: var(--text-2); text-transform: uppercase; letter-spacing: var(--tracking-wider);">Sources</div>
-            </div>
-          </div>
-          
-          <div style="background: var(--surface-0); border: 1px solid var(--line-2); border-radius: var(--radius-md); padding: var(--sp-6);">
-            <h3 style="font-size: var(--text-lg); font-weight: var(--weight-semibold); margin-bottom: var(--sp-4);">Reading Activity</h3>
-            <div style="height: 200px; background: var(--surface-1); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: var(--text-2);">
-              <span style="font-size: var(--text-sm);">Chart placeholder — Weekly reading activity</span>
-            </div>
-          </div>
-        </section>
-      </main>
+
+<nav class="nav">
+  <a class="nav-brand" href="index.html">
+    Dispatch
+    <span class="accent"></span>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link active" href="index.html">Today</a>
+    <a class="nav-link" href="archive.html">Archive</a>
+    <a class="nav-link" href="topic-world.html">Explore</a>
+  </div>
+  <div class="nav-actions">
+    <button class="nav-icon-btn" title="Search" onclick="document.getElementById('search-toast').style.display='flex'">
+      <svg><use href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='11' cy='11' r='8'/><path d='m21 21-4.3-4.3'/></svg>"></svg>
+    </button>
+    <button class="nav-icon-btn" title="Saved">
+      <svg viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+    </button>
+    <button class="nav-icon-btn" title="Settings">
+      <svg viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+    </button>
+  </div>
+</nav>
+
+<main class="page">
+
+  <div class="edition-header">
+    <div class="edition-meta">
+      <span class="dot"></span>
+      <span>Apr 20, 2026</span>
+      <span>·</span>
+      <span>Sunday Edition</span>
+    </div>
+    <h1 class="edition-title">The Signal</h1>
+    <p class="edition-subtitle">Seven stories you need today. No filler, no hot takes — just what matters.</p>
+    <div class="edition-stats">
+      <span><span class="stat-value">7</span> stories</span>
+      <span><span class="stat-value">4</span> min read</span>
+      <span><span class="stat-value">24</span> sources</span>
     </div>
   </div>
-  
-  <script>
-    // Initialize Lucide icons
-    lucide.createIcons();
-    
-    // Section navigation
-    function showSection(sectionId) {
-      // Hide all sections
-      document.querySelectorAll('.section').forEach(section => {
-        section.classList.remove('active');
-      });
-      
-      // Show target section
-      document.getElementById(sectionId).classList.add('active');
-      
-      // Update nav links
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-      });
-      
-      document.querySelectorAll('.sidebar-link').forEach(link => {
-        link.classList.remove('active');
-      });
-      
-      // Re-initialize icons for new content
-      lucide.createIcons();
-    }
-    
-    // Toggle bookmark
-    function toggleBookmark(btn) {
-      btn.classList.toggle('active');
-    }
-    
-    // Tab switching
-    document.querySelectorAll('.tab').forEach(tab => {
-      tab.addEventListener('click', function() {
-        this.parentElement.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-  </script>
+
+  <div class="lead-story">
+    <p class="lead-kicker">Breaking</p>
+    <h2 class="lead-headline">Federal Reserve Signals Rate Cut Cycle May Begin as Early as June</h2>
+    <p class="lead-summary">Markets rallied on the back of a cooler-than-expected jobs report — because nothing says optimism like signs of a slowing economy. The Fed's latest minutes reveal growing consensus that the current tightening cycle has run its course, with two members already voting for a cut.</p>
+    <div class="lead-meta">
+      <span class="badge badge-markets">Markets</span>
+      <span>5 sources</span>
+      <span>·</span>
+      <span>2 min read</span>
+    </div>
+    <div class="lead-actions">
+      <button class="btn btn-ghost">
+        <svg viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+        Save
+      </button>
+      <button class="btn btn-ghost">
+        <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share
+      </button>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-name">World</h2>
+      <a class="section-link" href="topic-world.html">
+        All World
+        <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+    <ul class="story-list">
+      <li class="story-item">
+        <div class="story-content">
+          <h3 class="story-headline">EU Reaches Landmark AI Regulation Deal After Two-Year Negotiation</h3>
+          <p class="story-summary">Brussels finalizes the world's most comprehensive AI governance framework. The regulation classifies AI systems by risk tier and mandates transparency for foundation models.</p>
+          <div class="story-meta">
+            <span>4 sources</span>
+            <span class="sep">·</span>
+            <span>3 min read</span>
+          </div>
+        </div>
+        <div class="story-actions">
+          <button class="story-action-btn" title="Save">
+            <svg viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+          <button class="story-action-btn" title="Share">
+            <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+        </div>
+      </li>
+      <li class="story-item">
+        <div class="story-content">
+          <h3 class="story-headline">India and Pakistan Resume Diplomatic Talks After Three-Year Freeze</h3>
+          <p class="story-summary">Both nations agree to reopen consular services and ease travel restrictions in a cautious but significant diplomatic thaw.</p>
+          <div class="story-meta">
+            <span>3 sources</span>
+            <span class="sep">·</span>
+            <span>2 min read</span>
+          </div>
+        </div>
+        <div class="story-actions">
+          <button class="story-action-btn" title="Save">
+            <svg viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+          <button class="story-action-btn" title="Share">
+            <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-name">Tech</h2>
+      <a class="section-link" href="topic-tech.html">
+        All Tech
+        <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+    <ul class="story-list">
+      <li class="story-item">
+        <div class="story-content">
+          <h3 class="story-headline">Apple Unveils On-Device AI Architecture for Next-Gen Silicon</h3>
+          <p class="story-summary">A new neural engine design enables large-language-model inference entirely on-device — no cloud, no latency, no privacy trade-offs.</p>
+          <div class="story-meta">
+            <span>5 sources</span>
+            <span class="sep">·</span>
+            <span>3 min read</span>
+          </div>
+        </div>
+        <div class="story-actions">
+          <button class="story-action-btn" title="Save">
+            <svg viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+          <button class="story-action-btn" title="Share">
+            <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+        </div>
+      </li>
+      <li class="story-item">
+        <div class="story-content">
+          <h3 class="story-headline">OpenAI and Microsoft Reportedly at Odds Over Profit Structure</h3>
+          <p class="story-summary">Internal tensions surface as OpenAI's transition to a for-profit entity tests the boundaries of its landmark partnership with Microsoft.</p>
+          <div class="story-meta">
+            <span>3 sources</span>
+            <span class="sep">·</span>
+            <span>2 min read</span>
+          </div>
+        </div>
+        <div class="story-actions">
+          <button class="story-action-btn" title="Save">
+            <svg viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+          <button class="story-action-btn" title="Share">
+            <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-name">Markets</h2>
+      <a class="section-link" href="topic-markets.html">
+        All Markets
+        <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+    <ul class="story-list">
+      <li class="story-item">
+        <div class="story-content">
+          <h3 class="story-headline">S&P 500 Closes at Record High as Bond Yields Slide</h3>
+          <p class="story-summary">Equities rallied for a third straight session as Treasury yields fell below 4%, fueling bets that the Fed's pivot is imminent.</p>
+          <div class="story-meta">
+            <span>4 sources</span>
+            <span class="sep">·</span>
+            <span>2 min read</span>
+          </div>
+        </div>
+        <div class="story-actions">
+          <button class="story-action-btn" title="Save">
+            <svg viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+          <button class="story-action-btn" title="Share">
+            <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-name">Culture</h2>
+      <a class="section-link" href="topic-culture.html">
+        All Culture
+        <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+      </a>
+    </div>
+    <ul class="story-list">
+      <li class="story-item">
+        <div class="story-content">
+          <h3 class="story-headline">Cannes Lineup Signals a Return to Auteur-Driven Cinema</h3>
+          <p class="story-summary">This year's selection leans heavily into personal, non-franchise filmmaking — a quiet rebellion against the sequel machine.</p>
+          <div class="story-meta">
+            <span>2 sources</span>
+            <span class="sep">·</span>
+            <span>1 min read</span>
+          </div>
+        </div>
+        <div class="story-actions">
+          <button class="story-action-btn" title="Save">
+            <svg viewBox="0 0 24 24"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+          <button class="story-action-btn" title="Share">
+            <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <footer class="page-footer">
+    <span class="footer-brand">Dispatch</span>
+    <span>by Aaron Mompié</span>
+  </footer>
+
+</main>
+
 </body>
 </html>

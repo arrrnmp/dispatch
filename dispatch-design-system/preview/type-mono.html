@@ -1,199 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dispatch — Monospace Typography</title>
-  <link rel="stylesheet" href="../colors_and_type.css">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: var(--font-body);
-      background: var(--surface-1);
-      padding: var(--sp-12);
-      color: var(--text-0);
-    }
-    
-    .card {
-      max-width: 720px;
-      margin: 0 auto var(--sp-8);
-      background: var(--surface-0);
-      border: 1px solid var(--line-2);
-      border-radius: var(--radius-md);
-      padding: var(--sp-8);
-      box-shadow: var(--sh-sm);
-    }
-    
-    .label {
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      color: var(--text-2);
-      text-transform: uppercase;
-      letter-spacing: var(--tracking-widest);
-      margin-bottom: var(--sp-2);
-    }
-    
-    .mono-text {
-      font-family: var(--font-mono);
-    }
-    
-    .sample-row {
-      display: flex;
-      align-items: center;
-      gap: var(--sp-4);
-      padding: var(--sp-4) 0;
-      border-bottom: 1px solid var(--line-1);
-    }
-    
-    .sample-row:last-child {
-      border-bottom: none;
-    }
-    
-    .timestamp {
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      color: var(--text-2);
-    }
-    
-    .meta-label {
-      font-family: var(--font-mono);
-      font-size: var(--text-2xs);
-      color: var(--text-3);
-      text-transform: uppercase;
-      letter-spacing: var(--tracking-wider);
-      background: var(--surface-1);
-      padding: var(--sp-1) var(--sp-2);
-      border-radius: var(--radius-sm);
-    }
-    
-    .meta-value {
-      font-family: var(--font-mono);
-      font-size: var(--text-sm);
-      color: var(--text-1);
-    }
-    
-    .code-block {
-      font-family: var(--font-mono);
-      font-size: var(--text-sm);
-      background: var(--surface-1);
-      padding: var(--sp-4);
-      border-radius: var(--radius-sm);
-      color: var(--text-1);
-      overflow-x: auto;
-    }
-    
-    .kbd {
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      background: var(--surface-1);
-      border: 1px solid var(--line-2);
-      border-radius: var(--radius-sm);
-      padding: var(--sp-1) var(--sp-2);
-      box-shadow: var(--sh-xs);
-    }
-    
-    .meta {
-      font-size: var(--text-sm);
-      color: var(--text-2);
-      margin-top: var(--sp-6);
-      padding-top: var(--sp-6);
-      border-top: 1px solid var(--line-1);
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 40px 24px;
+    background: var(--surface-0);
+    font-family: var(--font-body);
+    color: var(--text-0);
+  }
+  .specimen { max-width: 700px; margin: 0 auto 48px; }
+  .specimen-label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--text-3);
+    margin-bottom: 8px;
+  }
+  .specimen-line {
+    font-family: var(--font-mono);
+    line-height: var(--leading-relaxed);
+    margin: 0 0 4px;
+  }
+  .s-base { font-size: var(--text-base); }
+  .s-sm { font-size: var(--text-sm); }
+  .s-xs { font-size: var(--text-xs); }
+  .divider {
+    max-width: 700px;
+    margin: 0 auto 48px;
+    border: none;
+    border-top: 1px solid var(--line-1);
+  }
+  .usage-grid {
+    max-width: 700px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 8px 16px;
+  }
+  .usage-label {
+    font-size: var(--text-xs);
+    font-family: var(--font-mono);
+    color: var(--text-2);
+  }
+  .usage-sample {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+  .inline-mono {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: var(--surface-1);
+    padding: 2px 6px;
+    border-radius: var(--radius-xs);
+    color: var(--primary-4);
+  }
+  .timestamp-row {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: var(--text-sm);
+    color: var(--text-2);
+  }
+  .timestamp-row time {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-1);
+  }
+  .source-count {
+    font-family: var(--font-mono);
+    font-weight: var(--weight-semibold);
+    font-size: var(--text-sm);
+    color: var(--primary-2);
+  }
+</style>
 </head>
 <body>
-  <div class="card">
-    <div class="label">Monospace — JetBrains Mono</div>
-    
-    <div class="sample-row">
-      <span class="meta-label">Timestamp</span>
-      <span class="timestamp">07:00 UTC</span>
-      <span class="timestamp">3 min read</span>
-      <span class="timestamp">2 hours ago</span>
-    </div>
-    
-    <div class="sample-row">
-      <span class="meta-label">Meta Data</span>
-      <span class="meta-value">8 sources curated</span>
-    </div>
-    
-    <div class="sample-row">
-      <span class="meta-label">Source Count</span>
-      <span class="meta-value">The Guardian · BBC · Reuters</span>
-    </div>
-    
-    <div class="sample-row">
-      <span class="meta-label">Code</span>
-      <span class="meta-value mono-text">const dispatch = new Digest();</span>
-    </div>
-  </div>
 
-  <div class="card">
-    <div class="label">In Context</div>
-    
-    <div style="margin-bottom: var(--sp-6);">
-      <h3 style="font-size: var(--text-xl); margin-bottom: var(--sp-2);">Climate Summit Reaches Historic Agreement</h3>
-      <div style="display: flex; gap: var(--sp-4); align-items: center; margin-bottom: var(--sp-4);">
-        <span class="timestamp">Today at 09:30</span>
-        <span style="color: var(--text-3);">·</span>
-        <span class="timestamp">5 min read</span>
-        <span style="color: var(--text-3);">·</span>
-        <span class="timestamp">12 sources</span>
-      </div>
-      <p style="color: var(--text-1); line-height: var(--leading-relaxed);">World leaders have agreed to binding emissions targets that exceed previous commitments. The agreement, reached after 48 hours of negotiations, includes...</p>
-    </div>
-    
-    <div style="padding: var(--sp-4); background: var(--surface-1); border-radius: var(--radius-sm); border: 1px solid var(--line-1);">
-      <div style="font-size: var(--text-xs); color: var(--text-2); margin-bottom: var(--sp-2); font-family: var(--font-mono);">Story metadata</div>
-      <div class="sample-row" style="border: none; padding: var(--sp-1) 0;">
-        <span class="meta-label">ID</span>
-        <span class="meta-value">story_2024_0115_001</span>
-      </div>
-      <div class="sample-row" style="border: none; padding: var(--sp-1) 0;">
-        <span class="meta-label">Category</span>
-        <span class="meta-value">climate</span>
-      </div>
-      <div class="sample-row" style="border: none; padding: var(--sp-1) 0;">
-        <span class="meta-label">Sources</span>
-        <span class="meta-value">8</span>
-      </div>
-    </div>
-  </div>
+<div class="specimen">
+  <div class="specimen-label">Monospace · JetBrains Mono</div>
+  <p class="specimen-line s-base">0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
+  <p class="specimen-line s-sm">abcdefghijklmnopqrstuvwxyz {}[]()<>;:.,/\\@#$%^&*+-=</p>
+  <p class="specimen-line s-xs">The quick brown fox jumps over the lazy dog. 14:32 CET · 7 stories</p>
+</div>
 
-  <div class="card">
-    <div class="label">Keyboard Shortcuts</div>
-    
-    <div style="display: flex; flex-direction: column; gap: var(--sp-3);">
-      <div class="sample-row" style="border: none; padding: var(--sp-2) 0;">
-        <span>Open search</span>
-        <span style="margin-left: auto; display: flex; gap: var(--sp-2);">
-          <span class="kbd">⌘</span><span class="kbd">K</span>
-        </span>
-      </div>
-      <div class="sample-row" style="border: none; padding: var(--sp-2) 0;">
-        <span>Next story</span>
-        <span style="margin-left: auto; display: flex; gap: var(--sp-2);">
-          <span class="kbd">J</span>
-        </span>
-      </div>
-      <div class="sample-row" style="border: none; padding: var(--sp-2) 0;">
-        <span>Previous story</span>
-        <span style="margin-left: auto; display: flex; gap: var(--sp-2);">
-          <span class="kbd">K</span>
-        </span>
-      </div>
-      <div class="sample-row" style="border: none; padding: var(--sp-2) 0;">
-        <span>Bookmark</span>
-        <span style="margin-left: auto; display: flex; gap: var(--sp-2);">
-          <span class="kbd">B</span>
-        </span>
-      </div>
-    </div>
-  </div>
+<hr class="divider">
 
-  <div class="meta">
-    Font: JetBrains Mono (Google Fonts) | Weights: 400, 500 | Used for: Timestamps, metadata, technical indicators, keyboard shortcuts
-  </div>
+<div class="specimen">
+  <div class="specimen-label">Usage Contexts</div>
+</div>
+<div class="usage-grid">
+  <span class="usage-label">Timestamps</span>
+  <span class="usage-sample">14:32 CET</span>
+  <span class="usage-label">Dates</span>
+  <span class="usage-sample">2026-04-20</span>
+  <span class="usage-label">Source counts</span>
+  <span class="usage-sample">3 sources</span>
+  <span class="usage-label">Reading time</span>
+  <span class="usage-sample">4 min read</span>
+  <span class="usage-label">Data values</span>
+  <span class="usage-sample">+2.4%</span>
+  <span class="usage-label">Inline code</span>
+  <span class="usage-sample"><span class="inline-mono">--primary-2</span></span>
+</div>
+
+<hr class="divider">
+
+<div class="specimen">
+  <div class="specimen-label">In Context · Byline Row</div>
+</div>
+<div class="timestamp-row">
+  <time>14:32</time>
+  <span>·</span>
+  <span>Apr 20, 2026</span>
+  <span>·</span>
+  <span class="source-count">3 sources</span>
+  <span>·</span>
+  <span>4 min read</span>
+</div>
+
 </body>
 </html>

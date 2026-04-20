@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 40px 24px;
+    background: var(--surface-0);
+    font-family: var(--font-body);
+    color: var(--text-0);
+  }
+  .card { max-width: 700px; margin: 0 auto 48px; }
+  .card-label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--text-3);
+    margin-bottom: 16px;
+  }
+  .alert-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .alert {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+  }
+  .alert-success { background: var(--success-0); color: var(--success-1); }
+  .alert-warning { background: var(--warning-0); color: var(--warning-1); }
+  .alert-error { background: var(--error-0); color: var(--error-1); }
+  .alert-info { background: var(--info-0); color: var(--info-1); }
+  .swatch-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .swatch {
+    width: 80px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line-1);
+  }
+  .swatch-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-2);
+    margin-top: 4px;
+  }
+  .s-success-0 { background: var(--success-0); }
+  .s-success-1 { background: var(--success-1); }
+  .s-warning-0 { background: var(--warning-0); }
+  .s-warning-1 { background: var(--warning-1); }
+  .s-error-0 { background: var(--error-0); }
+  .s-error-1 { background: var(--error-1); }
+  .s-info-0 { background: var(--info-0); }
+  .s-info-1 { background: var(--info-1); }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-label">Success</div>
+  <div class="swatch-row">
+    <div><div class="swatch s-success-0"></div><div class="swatch-label">success-0</div></div>
+    <div><div class="swatch s-success-1"></div><div class="swatch-label">success-1</div></div>
+  </div>
+  <div class="alert alert-success">Story saved successfully</div>
+</div>
+
+<div class="card">
+  <div class="card-label">Warning</div>
+  <div class="swatch-row">
+    <div><div class="swatch s-warning-0"></div><div class="swatch-label">warning-0</div></div>
+    <div><div class="swatch s-warning-1"></div><div class="swatch-label">warning-1</div></div>
+  </div>
+  <div class="alert alert-warning">This edition will expire in 24h</div>
+</div>
+
+<div class="card">
+  <div class="card-label">Error</div>
+  <div class="swatch-row">
+    <div><div class="swatch s-error-0"></div><div class="swatch-label">error-0</div></div>
+    <div><div class="swatch s-error-1"></div><div class="swatch-label">error-1</div></div>
+  </div>
+  <div class="alert alert-error">Failed to load today's briefing</div>
+</div>
+
+<div class="card">
+  <div class="card-label">Info</div>
+  <div class="swatch-row">
+    <div><div class="swatch s-info-0"></div><div class="swatch-label">info-0</div></div>
+    <div><div class="swatch s-info-1"></div><div class="swatch-label">info-1</div></div>
+  </div>
+  <div class="alert alert-info">New features available in settings</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 40px 24px;
+    background: var(--surface-0);
+    font-family: var(--font-body);
+    color: var(--text-0);
+  }
+  .card { max-width: 700px; margin: 0 auto 48px; }
+  .card-label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--text-3);
+    margin-bottom: 16px;
+  }
+  .radii-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .radii-name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-2);
+    width: 80px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .radii-val {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-3);
+    width: 48px;
+    flex-shrink: 0;
+  }
+  .radii-box {
+    width: 64px;
+    height: 48px;
+    background: var(--surface-1);
+    border: 1px solid var(--line-2);
+  }
+  .r-xs { border-radius: var(--radius-xs); }
+  .r-sm { border-radius: var(--radius-sm); }
+  .r-md { border-radius: var(--radius-md); }
+  .r-lg { border-radius: var(--radius-lg); }
+  .r-xl { border-radius: var(--radius-xl); }
+  .r-2xl { border-radius: var(--radius-2xl); }
+  .r-full { border-radius: var(--radius-full); }
+
+  .usage-grid {
+    max-width: 700px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 8px 16px;
+  }
+  .usage-name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-2);
+  }
+  .usage-desc {
+    font-size: var(--text-sm);
+    color: var(--text-1);
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-label">Border Radii</div>
+  <div style="display: flex; flex-direction: column; gap: 8px;">
+    <div class="radii-row">
+      <span class="radii-name">radius-xs</span>
+      <span class="radii-val">2px</span>
+      <div class="radii-box r-xs"></div>
+    </div>
+    <div class="radii-row">
+      <span class="radii-name">radius-sm</span>
+      <span class="radii-val">4px</span>
+      <div class="radii-box r-sm"></div>
+    </div>
+    <div class="radii-row">
+      <span class="radii-name">radius-md</span>
+      <span class="radii-val">6px</span>
+      <div class="radii-box r-md"></div>
+    </div>
+    <div class="radii-row">
+      <span class="radii-name">radius-lg</span>
+      <span class="radii-val">8px</span>
+      <div class="radii-box r-lg"></div>
+    </div>
+    <div class="radii-row">
+      <span class="radii-name">radius-xl</span>
+      <span class="radii-val">12px</span>
+      <div class="radii-box r-xl"></div>
+    </div>
+    <div class="radii-row">
+      <span class="radii-name">radius-2xl</span>
+      <span class="radii-val">16px</span>
+      <div class="radii-box r-2xl"></div>
+    </div>
+    <div class="radii-row">
+      <span class="radii-name">radius-full</span>
+      <span class="radii-val">9999px</span>
+      <div class="radii-box r-full" style="width: 48px;"></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-label">Usage Guide</div>
+  <div class="usage-grid">
+    <span class="usage-name">radius-xs</span>
+    <span class="usage-desc">Inline code, tiny decorative elements</span>
+    <span class="usage-name">radius-sm</span>
+    <span class="usage-desc">Buttons, inputs, small controls</span>
+    <span class="usage-name">radius-md</span>
+    <span class="usage-desc">Cards, list items, panels</span>
+    <span class="usage-name">radius-lg</span>
+    <span class="usage-desc">Modals, dropdown menus</span>
+    <span class="usage-name">radius-xl</span>
+    <span class="usage-desc">Large featured cards, hero images</span>
+    <span class="usage-name">radius-2xl</span>
+    <span class="usage-desc">Major overlays, side panels</span>
+    <span class="usage-name">radius-full</span>
+    <span class="usage-desc">Tag pills, badges, avatar circles</span>
+  </div>
+</div>
+
+</body>
+</html>

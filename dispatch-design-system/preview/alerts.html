@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    padding: 40px 24px;
+    background: var(--surface-0);
+    font-family: var(--font-body);
+    color: var(--text-0);
+  }
+  .card { max-width: 700px; margin: 0 auto 48px; }
+  .card-label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--text-3);
+    margin-bottom: 16px;
+  }
+
+  .alert {
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    border: 1px solid;
+  }
+  .alert-icon { flex-shrink: 0; margin-top: 1px; }
+
+  .alert-info {
+    background: var(--info-0);
+    color: var(--info-1);
+    border-color: rgba(42,93,143,0.15);
+  }
+  .alert-success {
+    background: var(--success-0);
+    color: var(--success-1);
+    border-color: rgba(46,125,50,0.15);
+  }
+  .alert-warning {
+    background: var(--warning-0);
+    color: var(--warning-1);
+    border-color: rgba(201,148,26,0.15);
+  }
+  .alert-error {
+    background: var(--error-0);
+    color: var(--error-1);
+    border-color: rgba(196,50,46,0.15);
+  }
+
+  .alert-title {
+    font-weight: var(--weight-semibold);
+    margin-bottom: 2px;
+  }
+  .alert-body {
+    opacity: 0.85;
+    line-height: var(--leading-normal);
+  }
+
+  /* Inline message */
+  .inline-msg {
+    font-size: var(--text-sm);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 0;
+  }
+  .inline-msg.error { color: var(--error-1); }
+  .inline-msg.success { color: var(--success-1); }
+
+  /* Toast */
+  .toast {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--surface-5);
+    color: #e8e8e4;
+    border-radius: var(--radius-md);
+    box-shadow: var(--sh-lg);
+    font-size: var(--text-sm);
+    max-width: 360px;
+    margin-bottom: 8px;
+  }
+  .toast-close {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--text-3);
+    cursor: pointer;
+    padding: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-label">Alert Banners</div>
+
+  <div class="alert alert-info">
+    <svg class="alert-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    <div>
+      <div class="alert-title">New edition available</div>
+      <div class="alert-body">Today's briefing is ready. Refresh to see the latest stories.</div>
+    </div>
+  </div>
+
+  <div class="alert alert-success">
+    <svg class="alert-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+    <div>
+      <div class="alert-title">Story saved</div>
+      <div class="alert-body">Added to your reading list.</div>
+    </div>
+  </div>
+
+  <div class="alert alert-warning">
+    <svg class="alert-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+    <div>
+      <div class="alert-title">This edition expires in 24h</div>
+      <div class="alert-body">Saved stories will remain in your archive.</div>
+    </div>
+  </div>
+
+  <div class="alert alert-error">
+    <svg class="alert-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+    <div>
+      <div class="alert-title">Failed to load briefing</div>
+      <div class="alert-body">Check your connection and try again.</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-label">Inline Messages</div>
+  <div class="inline-msg success">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg>
+    Settings saved
+  </div>
+  <div class="inline-msg error">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></svg>
+    Invalid email address
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-label">Toast Notifications</div>
+  <div class="toast">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary-2)" stroke-width="1.5"><path d="m9 12 2 2 4-4"/></svg>
+    Story bookmarked
+    <button class="toast-close" aria-label="Dismiss"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+</div>
+
+</body>
+</html>
