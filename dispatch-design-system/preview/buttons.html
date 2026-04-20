@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dispatch — Buttons</title>
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--surface-1);
+      padding: var(--sp-12);
+      color: var(--text-0);
+    }
+    
+    .card {
+      max-width: 800px;
+      margin: 0 auto var(--sp-8);
+      background: var(--surface-0);
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius-md);
+      padding: var(--sp-8);
+      box-shadow: var(--sh-sm);
+    }
+    
+    .label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      margin-bottom: var(--sp-4);
+    }
+    
+    .section-title {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-semibold);
+      margin-bottom: var(--sp-4);
+      padding-bottom: var(--sp-2);
+      border-bottom: 1px solid var(--line-1);
+    }
+    
+    .button-row {
+      display: flex;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+      margin-bottom: var(--sp-6);
+    }
+    
+    .button-row:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Base button styles */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-2);
+      padding: var(--sp-3) var(--sp-5);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      line-height: var(--leading-none);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-snappy);
+      text-decoration: none;
+    }
+    
+    .btn:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+    
+    /* Primary Button */
+    .btn-primary {
+      background: var(--primary);
+      color: var(--surface-0);
+      box-shadow: var(--sh-sm);
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-3);
+      box-shadow: var(--sh-md);
+      transform: translateY(-1px);
+    }
+    
+    .btn-primary:active {
+      transform: scale(0.98);
+      box-shadow: var(--sh-xs);
+    }
+    
+    .btn-primary:disabled {
+      background: var(--surface-3);
+      color: var(--text-3);
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    /* Secondary Button */
+    .btn-secondary {
+      background: var(--surface-1);
+      color: var(--text-0);
+      border: 1px solid var(--line-2);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--surface-2);
+      border-color: var(--line-3);
+    }
+    
+    .btn-secondary:active {
+      transform: scale(0.98);
+      background: var(--surface-3);
+    }
+    
+    .btn-secondary:disabled {
+      background: var(--surface-0);
+      color: var(--text-3);
+      border-color: var(--line-1);
+      cursor: not-allowed;
+    }
+    
+    /* Accent/CTA Button */
+    .btn-accent {
+      background: var(--accent);
+      color: var(--surface-0);
+      box-shadow: var(--sh-sm);
+    }
+    
+    .btn-accent:hover {
+      background: var(--accent-2);
+      box-shadow: var(--sh-md);
+      transform: translateY(-1px);
+    }
+    
+    .btn-accent:active {
+      transform: scale(0.98);
+      box-shadow: var(--sh-xs);
+    }
+    
+    /* Ghost Button */
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-1);
+      border: 1px solid transparent;
+    }
+    
+    .btn-ghost:hover {
+      background: var(--surface-1);
+      color: var(--text-0);
+    }
+    
+    .btn-ghost:active {
+      background: var(--surface-2);
+    }
+    
+    /* Text Button */
+    .btn-text {
+      background: transparent;
+      color: var(--primary);
+      padding: var(--sp-2) var(--sp-2);
+      position: relative;
+    }
+    
+    .btn-text::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: var(--sp-2);
+      right: var(--sp-2);
+      height: 1px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transition: transform var(--duration-fast) var(--ease-snappy);
+    }
+    
+    .btn-text:hover::after {
+      transform: scaleX(1);
+    }
+    
+    /* Size variants */
+    .btn-sm {
+      padding: var(--sp-2) var(--sp-3);
+      font-size: var(--text-xs);
+    }
+    
+    .btn-lg {
+      padding: var(--sp-4) var(--sp-6);
+      font-size: var(--text-base);
+    }
+    
+    /* Icon button */
+    .btn-icon {
+      padding: var(--sp-3);
+      min-width: 40px;
+      min-height: 40px;
+    }
+    
+    .btn-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+    
+    /* Dark section */
+    .dark-section {
+      background: var(--surface-4);
+      border-radius: var(--radius-md);
+      padding: var(--sp-6);
+      margin-top: var(--sp-6);
+    }
+    
+    .dark-section .btn-primary {
+      background: var(--surface-0);
+      color: var(--primary);
+    }
+    
+    .dark-section .btn-primary:hover {
+      background: var(--surface-1);
+    }
+    
+    .meta {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      margin-top: var(--sp-6);
+      padding-top: var(--sp-6);
+      border-top: 1px solid var(--line-1);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="section-title">Button Variants</div>
+    <div class="label">Primary — For main actions</div>
+    <div class="button-row">
+      <button class="btn btn-primary">Get Dispatch</button>
+      <button class="btn btn-primary">Save Changes</button>
+      <button class="btn btn-primary" disabled>Disabled</button>
+    </div>
+    
+    <div class="label">Secondary — For alternative actions</div>
+    <div class="button-row">
+      <button class="btn btn-secondary">Cancel</button>
+      <button class="btn btn-secondary">Learn More</button>
+      <button class="btn btn-secondary" disabled>Disabled</button>
+    </div>
+    
+    <div class="label">Accent — For conversion CTAs</div>
+    <div class="button-row">
+      <button class="btn btn-accent">Subscribe Now</button>
+      <button class="btn btn-accent">Start Free Trial</button>
+    </div>
+    
+    <div class="label">Ghost — For subtle actions</div>
+    <div class="button-row">
+      <button class="btn btn-ghost">Skip</button>
+      <button class="btn btn-ghost">Back</button>
+    </div>
+    
+    <div class="label">Text — For inline links</div>
+    <div class="button-row">
+      <button class="btn btn-text">Read more</button>
+      <button class="btn btn-text">View all</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Button Sizes</div>
+    <div class="label">Small — Compact UI elements</div>
+    <div class="button-row">
+      <button class="btn btn-primary btn-sm">Save</button>
+      <button class="btn btn-secondary btn-sm">Cancel</button>
+      <button class="btn btn-ghost btn-sm">Edit</button>
+    </div>
+    
+    <div class="label">Default — Standard buttons</div>
+    <div class="button-row">
+      <button class="btn btn-primary">Subscribe</button>
+      <button class="btn btn-secondary">Cancel</button>
+    </div>
+    
+    <div class="label">Large — Hero CTAs</div>
+    <div class="button-row">
+      <button class="btn btn-accent btn-lg">Get Started</button>
+      <button class="btn btn-primary btn-lg">Learn More</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Button States</div>
+    <div class="label">Hover and active states</div>
+    <div class="button-row">
+      <button class="btn btn-primary">Default</button>
+      <button class="btn btn-primary" style="background: var(--primary-3);">Hover</button>
+      <button class="btn btn-primary" style="transform: scale(0.98); box-shadow: var(--sh-xs);">Active</button>
+      <button class="btn btn-primary" disabled>Disabled</button>
+    </div>
+    
+    <div class="label">Focus state</div>
+    <div class="button-row">
+      <button class="btn btn-primary" style="outline: 2px solid var(--primary); outline-offset: 2px;">Focused</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Dark Mode</div>
+    <div class="dark-section">
+      <div class="button-row">
+        <button class="btn btn-primary">Get Dispatch</button>
+        <button class="btn btn-secondary" style="background: transparent; color: var(--surface-0); border-color: rgba(255,255,255,0.2);">Cancel</button>
+        <button class="btn btn-ghost" style="color: var(--surface-0);">Skip</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Button Guidelines</div>
+    
+    <div class="meta">
+      <div style="display: flex; flex-direction: column; gap: var(--sp-3);">
+        <div><strong>Primary:</strong> Main actions — Submit, Save, Continue. Use the editorial blue.</div>
+        <div><strong>Secondary:</strong> Alternative actions — Cancel, Back, Dismiss. Subtle background.</div>
+        <div><strong>Accent:</strong> Conversion CTAs — Subscribe, Sign up. Reserved for revenue actions.</div>
+        <div><strong>Ghost:</strong> Low-emphasis actions — Skip, Close. Transparent with hover state.</div>
+        <div><strong>Text:</strong> Inline links — Read more, View all. Underline on hover.</div>
+        <div style="margin-top: var(--sp-2);"><strong>Radius:</strong> 8px for all buttons. No full-width pills except badges.</div>
+        <div><strong>Shadow:</strong> sm on rest, md on hover, xs on press.</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

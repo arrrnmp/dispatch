@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dispatch — Display Typography</title>
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--surface-1);
+      padding: var(--sp-12);
+      color: var(--text-0);
+    }
+    
+    .card {
+      max-width: 800px;
+      margin: 0 auto var(--sp-8);
+      background: var(--surface-0);
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius-md);
+      padding: var(--sp-8);
+      box-shadow: var(--sh-sm);
+    }
+    
+    .specimen {
+      font-family: var(--font-display);
+      margin-bottom: var(--sp-4);
+    }
+    
+    .specimen-6xl {
+      font-size: var(--text-6xl);
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-tight);
+    }
+    
+    .specimen-5xl {
+      font-size: var(--text-5xl);
+      line-height: var(--leading-tight);
+      letter-spacing: var(--tracking-tight);
+    }
+    
+    .specimen-4xl {
+      font-size: var(--text-4xl);
+      line-height: var(--leading-snug);
+      letter-spacing: var(--tracking-tight);
+    }
+    
+    .specimen-3xl {
+      font-size: var(--text-3xl);
+      line-height: var(--leading-snug);
+    }
+    
+    .specimen-italic {
+      font-style: italic;
+    }
+    
+    .label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      margin-bottom: var(--sp-2);
+    }
+    
+    .meta {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      margin-top: var(--sp-4);
+      padding-top: var(--sp-4);
+      border-top: 1px solid var(--line-1);
+    }
+    
+    .dark-demo {
+      background: var(--surface-4);
+      color: var(--text-0);
+    }
+    
+    .dark-demo .specimen {
+      color: var(--text-0);
+    }
+    
+    .dark-demo .label {
+      color: var(--text-2);
+    }
+    
+    .wordmark {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="label">60px / 6xl — Major Display</div>
+    <div class="specimen specimen-6xl">Dispatch</div>
+    <div class="meta">Used for hero headlines, major brand moments. Tight leading, slight negative tracking.</div>
+  </div>
+
+  <div class="card">
+    <div class="label">48px / 5xl — Hero Headlines</div>
+    <div class="specimen specimen-5xl">Your Daily Briefing</div>
+    <div class="meta">Section heroes, landing page headlines. Maximum impact.</div>
+  </div>
+
+  <div class="card">
+    <div class="label">36px / 4xl — Section Headlines</div>
+    <div class="specimen specimen-4xl">Curated News, Delivered</div>
+    <div class="meta">Primary section headings. Clear hierarchy without shouting.</div>
+  </div>
+
+  <div class="card">
+    <div class="label">36px / 4xl Italic — Editorial Accent</div>
+    <div class="specimen specimen-4xl specimen-italic">The Stories That Matter</div>
+    <div class="meta">Italic style for editorial flourish and brand personality.</div>
+  </div>
+
+  <div class="card">
+    <div class="label">30px / 3xl — Subsection Headlines</div>
+    <div class="specimen specimen-3xl">Today's Top Stories</div>
+    <div class="meta">Subsection headings, card titles, secondary hierarchy.</div>
+  </div>
+
+  <div class="card">
+    <div class="label">Brand Wordmark</div>
+    <div class="wordmark">Dispatch</div>
+    <div class="meta">The Dispatch wordmark — always italic, always in Instrument Serif.</div>
+  </div>
+
+  <div class="card dark-demo">
+    <div class="label">Dark Mode Display</div>
+    <div class="specimen specimen-5xl">News for the AI Era</div>
+    <div class="meta">Display type maintains impact on dark surfaces.</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dispatch — Surface Colors</title>
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--surface-1);
+      padding: var(--sp-12);
+      color: var(--text-0);
+    }
+    
+    .card {
+      max-width: 800px;
+      margin: 0 auto var(--sp-8);
+      background: var(--surface-0);
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius-md);
+      padding: var(--sp-8);
+      box-shadow: var(--sh-sm);
+    }
+    
+    .label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      margin-bottom: var(--sp-2);
+    }
+    
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: var(--sp-4);
+    }
+    
+    .swatch {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--line-2);
+    }
+    
+    .swatch-color {
+      height: 80px;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--sp-3);
+    }
+    
+    .swatch-info {
+      padding: var(--sp-3);
+      background: var(--surface-0);
+      border-top: 1px solid var(--line-1);
+    }
+    
+    .swatch-name {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--text-0);
+      margin-bottom: var(--sp-1);
+    }
+    
+    .swatch-value {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+    }
+    
+    .dark-section {
+      background: var(--surface-4);
+      border-radius: var(--radius-md);
+      padding: var(--sp-6);
+      margin-top: var(--sp-6);
+    }
+    
+    .dark-section .label {
+      color: var(--text-2);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="label">Surface Colors — Light Mode</div>
+    
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--surface-0);">
+          <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-2);">surface-0</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">surface-0</div>
+          <div class="swatch-value">#ffffff</div>
+        </div>
+      </div>
+      
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--surface-1);">
+          <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-2);">surface-1</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">surface-1</div>
+          <div class="swatch-value">#f8f9fa</div>
+        </div>
+      </div>
+      
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--surface-2);">
+          <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-2);">surface-2</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">surface-2</div>
+          <div class="swatch-value">#f0f2f4</div>
+        </div>
+      </div>
+      
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--surface-3);">
+          <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-1);">surface-3</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">surface-3</div>
+          <div class="swatch-value">#e8eaec</div>
+        </div>
+      </div>
+      
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--surface-4);">
+          <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-0);">surface-4</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">surface-4</div>
+          <div class="swatch-value">#1a1a1a</div>
+        </div>
+      </div>
+      
+      <div class="swatch">
+        <div class="swatch-color" style="background: var(--surface-5);">
+          <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-0);">surface-5</span>
+        </div>
+        <div class="swatch-info">
+          <div class="swatch-name">surface-5</div>
+          <div class="swatch-value">#0a0c10</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="dark-section">
+      <div class="label">Surface Colors — Dark Mode</div>
+      <div style="color: var(--text-1); font-size: var(--text-sm);">
+        Surfaces invert: surface-0 becomes #0a0c10, surface-5 becomes #f0f2f4.
+        Defined in prefers-color-scheme: dark media query.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label">Usage Guidelines</div>
+    
+    <div style="display: flex; flex-direction: column; gap: var(--sp-4);">
+      <div style="display: flex; gap: var(--sp-4); align-items: flex-start;">
+        <div style="width: 48px; height: 48px; background: var(--surface-0); border: 1px solid var(--line-2); border-radius: var(--radius-sm); flex-shrink: 0;"></div>
+        <div>
+          <div style="font-weight: var(--weight-medium); margin-bottom: var(--sp-1);">surface-0 — Primary Backgrounds</div>
+          <div style="font-size: var(--text-sm); color: var(--text-2);">Main page backgrounds, cards, modals. Always white in light mode.</div>
+        </div>
+      </div>
+      
+      <div style="display: flex; gap: var(--sp-4); align-items: flex-start;">
+        <div style="width: 48px; height: 48px; background: var(--surface-1); border: 1px solid var(--line-2); border-radius: var(--radius-sm); flex-shrink: 0;"></div>
+        <div>
+          <div style="font-weight: var(--weight-medium); margin-bottom: var(--sp-1);">surface-1 — Soft Backgrounds</div>
+          <div style="font-size: var(--text-sm); color: var(--text-2);">Alternating sections, hover states, subtle separation. Cool gray tint.</div>
+        </div>
+      </div>
+      
+      <div style="display: flex; gap: var(--sp-4); align-items: flex-start;">
+        <div style="width: 48px; height: 48px; background: var(--surface-2); border: 1px solid var(--line-2); border-radius: var(--radius-sm); flex-shrink: 0;"></div>
+        <div>
+          <div style="font-weight: var(--weight-medium); margin-bottom: var(--sp-1);">surface-2 — Secondary Surfaces</div>
+          <div style="font-size: var(--text-sm); color: var(--text-2);">Input backgrounds, disabled states, secondary containers.</div>
+        </div>
+      </div>
+      
+      <div style="display: flex; gap: var(--sp-4); align-items: flex-start;">
+        <div style="width: 48px; height: 48px; background: var(--surface-3); border: 1px solid var(--line-2); border-radius: var(--radius-sm); flex-shrink: 0;"></div>
+        <div>
+          <div style="font-weight: var(--weight-medium); margin-bottom: var(--sp-1);">surface-3 — Dividers & Borders</div>
+          <div style="font-size: var(--text-sm); color: var(--text-2);">Strong borders, active backgrounds, emphasized containers.</div>
+        </div>
+      </div>
+      
+      <div style="display: flex; gap: var(--sp-4); align-items: flex-start;">
+        <div style="width: 48px; height: 48px; background: var(--surface-4); border: 1px solid var(--line-2); border-radius: var(--radius-sm); flex-shrink: 0;"></div>
+        <div>
+          <div style="font-weight: var(--weight-medium); margin-bottom: var(--sp-1); color: var(--text-0);">surface-4 — Dark Surfaces</div>
+          <div style="font-size: var(--text-sm); color: var(--text-2);">Footers, contrast sections, dark mode primary surfaces.</div>
+        </div>
+      </div>
+      
+      <div style="display: flex; gap: var(--sp-4); align-items: flex-start;">
+        <div style="width: 48px; height: 48px; background: var(--surface-5); border: 1px solid var(--line-2); border-radius: var(--radius-sm); flex-shrink: 0;"></div>
+        <div>
+          <div style="font-weight: var(--weight-medium); margin-bottom: var(--sp-1); color: var(--text-0);">surface-5 — Deepest Dark</div>
+          <div style="font-size: var(--text-sm); color: var(--text-2);">Near-black for maximum contrast. Used sparingly.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

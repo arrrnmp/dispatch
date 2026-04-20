@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dispatch — Spacing Tokens</title>
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--surface-1);
+      padding: var(--sp-12);
+      color: var(--text-0);
+    }
+    
+    .card {
+      max-width: 800px;
+      margin: 0 auto var(--sp-8);
+      background: var(--surface-0);
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius-md);
+      padding: var(--sp-8);
+      box-shadow: var(--sh-sm);
+    }
+    
+    .label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      margin-bottom: var(--sp-4);
+    }
+    
+    .section-title {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-semibold);
+      margin-bottom: var(--sp-4);
+      padding-bottom: var(--sp-2);
+      border-bottom: 1px solid var(--line-1);
+    }
+    
+    .spacing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: var(--sp-6);
+    }
+    
+    .spacing-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .spacing-box {
+      background: var(--primary);
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--sp-2);
+      transition: all var(--duration-fast) var(--ease-snappy);
+    }
+    
+    .spacing-box:hover {
+      background: var(--primary-2);
+    }
+    
+    .sp-1 { width: var(--sp-1); height: var(--sp-1); }
+    .sp-2 { width: var(--sp-2); height: var(--sp-2); }
+    .sp-3 { width: var(--sp-3); height: var(--sp-3); }
+    .sp-4 { width: var(--sp-4); height: var(--sp-4); }
+    .sp-5 { width: var(--sp-5); height: var(--sp-5); }
+    .sp-6 { width: var(--sp-6); height: var(--sp-6); }
+    .sp-8 { width: var(--sp-8); height: var(--sp-8); }
+    .sp-10 { width: var(--sp-10); height: var(--sp-10); }
+    .sp-12 { width: var(--sp-12); height: var(--sp-12); }
+    .sp-16 { width: var(--sp-16); height: var(--sp-16); }
+    .sp-20 { width: var(--sp-20); height: var(--sp-20); }
+    .sp-24 { width: var(--sp-24); height: var(--sp-24); }
+    
+    .spacing-name {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--text-0);
+      margin-bottom: var(--sp-1);
+    }
+    
+    .spacing-value {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+    }
+    
+    .usage-section {
+      margin-top: var(--sp-8);
+    }
+    
+    .usage-row {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      padding: var(--sp-3) 0;
+      border-bottom: 1px solid var(--line-1);
+    }
+    
+    .usage-row:last-child {
+      border-bottom: none;
+    }
+    
+    .usage-token {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--primary);
+      min-width: 80px;
+    }
+    
+    .usage-visual {
+      width: 80px;
+      height: 8px;
+      background: var(--primary-1);
+      border-radius: var(--radius-sm);
+    }
+    
+    .usage-desc {
+      font-size: var(--text-sm);
+      color: var(--text-1);
+      flex: 1;
+    }
+    
+    .meta {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      margin-top: var(--sp-6);
+      padding-top: var(--sp-6);
+      border-top: 1px solid var(--line-1);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="section-title">Spacing Scale</div>
+    <div class="label">4px grid system — all spacing multiples of 4</div>
+    
+    <div class="spacing-grid">
+      <div class="spacing-item">
+        <div class="spacing-box sp-1"></div>
+        <div class="spacing-name">sp-1</div>
+        <div class="spacing-value">4px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box sp-2"></div>
+        <div class="spacing-name">sp-2</div>
+        <div class="spacing-value">8px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box sp-3"></div>
+        <div class="spacing-name">sp-3</div>
+        <div class="spacing-value">12px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box sp-4"></div>
+        <div class="spacing-name">sp-4</div>
+        <div class="spacing-value">16px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box sp-5"></div>
+        <div class="spacing-name">sp-5</div>
+        <div class="spacing-value">20px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box sp-6"></div>
+        <div class="spacing-name">sp-6</div>
+        <div class="spacing-value">24px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box sp-8"></div>
+        <div class="spacing-name">sp-8</div>
+        <div class="spacing-value">32px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box sp-10"></div>
+        <div class="spacing-name">sp-10</div>
+        <div class="spacing-value">40px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box sp-12"></div>
+        <div class="spacing-name">sp-12</div>
+        <div class="spacing-value">48px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box sp-16"></div>
+        <div class="spacing-name">sp-16</div>
+        <div class="spacing-value">64px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box sp-20"></div>
+        <div class="spacing-name">sp-20</div>
+        <div class="spacing-value">80px</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-box sp-24"></div>
+        <div class="spacing-name">sp-24</div>
+        <div class="spacing-value">96px</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Usage Guidelines</div>
+    
+    <div class="usage-section">
+      <div class="usage-row">
+        <span class="usage-token">sp-1</span>
+        <div class="usage-visual" style="width: 4px;"></div>
+        <span class="usage-desc">Micro spacing — icon gaps, tight inline spacing</span>
+      </div>
+      <div class="usage-row">
+        <span class="usage-token">sp-2</span>
+        <div class="usage-visual" style="width: 8px;"></div>
+        <span class="usage-desc">Small gaps — related elements, icon + text</span>
+      </div>
+      <div class="usage-row">
+        <span class="usage-token">sp-3</span>
+        <div class="usage-visual" style="width: 12px;"></div>
+        <span class="usage-desc">Button groups, tight card gaps</span>
+      </div>
+      <div class="usage-row">
+        <span class="usage-token">sp-4</span>
+        <div class="usage-visual" style="width: 16px;"></div>
+        <span class="usage-desc">Card internal gaps, form element spacing</span>
+      </div>
+      <div class="usage-row">
+        <span class="usage-token">sp-5</span>
+        <div class="usage-visual" style="width: 20px;"></div>
+        <span class="usage-desc">Button internal padding (horizontal)</span>
+      </div>
+      <div class="usage-row">
+        <span class="usage-token">sp-6</span>
+        <div class="usage-visual" style="width: 24px;"></div>
+        <span class="usage-desc">Card padding, section gutters, button height</span>
+      </div>
+      <div class="usage-row">
+        <span class="usage-token">sp-8</span>
+        <div class="usage-visual" style="width: 32px;"></div>
+        <span class="usage-desc">Large card gaps, section padding</span>
+      </div>
+      <div class="usage-row">
+        <span class="usage-token">sp-10</span>
+        <div class="usage-visual" style="width: 40px;"></div>
+        <span class="usage-desc">Major section gaps</span>
+      </div>
+      <div class="usage-row">
+        <span class="usage-token">sp-12</span>
+        <div class="usage-visual" style="width: 48px;"></div>
+        <span class="usage-desc">Page section gaps</span>
+      </div>
+      <div class="usage-row">
+        <span class="usage-token">sp-16</span>
+        <div class="usage-visual" style="width: 64px;"></div>
+        <span class="usage-desc">Major section separations</span>
+      </div>
+      <div class="usage-row">
+        <span class="usage-token">sp-20+</span>
+        <div class="usage-visual" style="width: 64px;"></div>
+        <span class="usage-desc">Hero sections, marketing pages</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">In Context</div>
+    <div class="label">Spacing applied to components</div>
+    
+    <div style="padding: var(--sp-6); background: var(--surface-1); border-radius: var(--radius-md); border: 1px solid var(--line-1);">">
+ <div style="padding: var(--sp-6); background: white; border-radius: var(--radius-md); border: 1px solid var(--line-2); box-shadow: var(--sh-sm); margin-bottom: var(--sp-4);">
+ <div style="font-weight: var(--weight-semibold); margin-bottom: var(--sp-2);">Card with standard spacing</div>
+ <div style="font-size: var(--text-sm); color: var(--text-2); margin-bottom: var(--sp-3);">This card uses 24px padding and 16px gaps between elements.</div>
+ <div style="display: flex; gap: var(--sp-3);">
+ <button style="padding: var(--sp-2) var(--sp-4); background: var(--primary); color: white; border: none; border-radius: var(--radius-md); font-size: var(--text-sm);">Button</button>
+ <button style="padding: var(--sp-2) var(--sp-4); background: transparent; border: 1px solid var(--line-2); border-radius: var(--radius-md); font-size: var(--text-sm);">Cancel</button>
+ </div>
+ </div>
+ 
+ <div style="display: flex; gap: var(--sp-4); flex-wrap: wrap;">
+ <div style="padding: var(--sp-4); background: white; border-radius: var(--radius-md); border: 1px solid var(--line-2); flex: 1; min-width: 200px;">
+ <div style="font-weight: var(--weight-medium); margin-bottom: var(--sp-2);">Small card</div>
+ <div style="font-size: var(--text-xs); color: var(--text-2);">16px padding</div>
+ </div>
+ <div style="padding: var(--sp-4); background: white; border-radius: var(--radius-md); border: 1px solid var(--line-2); flex: 1; min-width: 200px;">
+ <div style="font-weight: var(--weight-medium); margin-bottom: var(--sp-2);">Small card</div>
+ <div style="font-size: var(--text-xs); color: var(--text-2);">16px gap between</div>
+ </div>
+ </div>
+ </div>
+</div>
+</body>
+</html>

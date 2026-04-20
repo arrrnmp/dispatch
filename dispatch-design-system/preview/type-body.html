@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dispatch — Body Typography</title>
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--surface-1);
+      padding: var(--sp-12);
+      color: var(--text-0);
+    }
+    
+    .card {
+      max-width: 720px;
+      margin: 0 auto var(--sp-8);
+      background: var(--surface-0);
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius-md);
+      padding: var(--sp-8);
+      box-shadow: var(--sh-sm);
+    }
+    
+    .label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      margin-bottom: var(--sp-2);
+    }
+    
+    .scale-row {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp-4);
+      padding: var(--sp-4) 0;
+      border-bottom: 1px solid var(--line-1);
+    }
+    
+    .scale-row:last-child {
+      border-bottom: none;
+    }
+    
+    .size-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+      min-width: 80px;
+    }
+    
+    .sample {
+      flex: 1;
+    }
+    
+    .text-2xs { font-size: var(--text-2xs); }
+    .text-xs { font-size: var(--text-xs); }
+    .text-sm { font-size: var(--text-sm); }
+    .text-base { font-size: var(--text-base); line-height: var(--leading-normal); }
+    .text-lg { font-size: var(--text-lg); line-height: var(--leading-relaxed); }
+    .text-xl { font-size: var(--text-xl); line-height: var(--leading-snug); }
+    .text-2xl { font-size: var(--text-2xl); line-height: var(--leading-snug); }
+    
+    .weight-thin { font-weight: var(--weight-thin); }
+    .weight-light { font-weight: var(--weight-light); }
+    .weight-regular { font-weight: var(--weight-regular); }
+    .weight-medium { font-weight: var(--weight-medium); }
+    .weight-semibold { font-weight: var(--weight-semibold); }
+    .weight-bold { font-weight: var(--weight-bold); }
+    
+    .reading-sample {
+      max-width: 65ch;
+    }
+    
+    .reading-sample p {
+      margin-bottom: var(--sp-4);
+      line-height: var(--leading-relaxed);
+    }
+    
+    .meta {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      margin-top: var(--sp-6);
+      padding-top: var(--sp-6);
+      border-top: 1px solid var(--line-1);
+    }
+    
+    .meta-title {
+      font-weight: var(--weight-semibold);
+      color: var(--text-0);
+      margin-bottom: var(--sp-2);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="label">Type Scale — Archivo</div>
+    
+    <div class="scale-row">
+      <span class="size-label">2xl</span>
+      <span class="sample text-2xl weight-medium">Section headings use 24px medium weight</span>
+    </div>
+    
+    <div class="scale-row">
+      <span class="size-label">xl</span>
+      <span class="sample text-xl weight-regular">Subsection headings in 20px regular</span>
+    </div>
+    
+    <div class="scale-row">
+      <span class="size-label">lg</span>
+      <span class="sample text-lg weight-regular">Lead paragraphs and emphasized text at 18px</span>
+    </div>
+    
+    <div class="scale-row">
+      <span class="size-label">base</span>
+      <span class="sample text-base weight-regular">Body text uses 16px with 1.5 line-height for readability</span>
+    </div>
+    
+    <div class="scale-row">
+      <span class="size-label">sm</span>
+      <span class="sample text-sm weight-regular">Secondary text and descriptions in 14px</span>
+    </div>
+    
+    <div class="scale-row">
+      <span class="size-label">xs</span>
+      <span class="sample text-xs weight-regular">Captions, timestamps, and metadata at 12px</span>
+    </div>
+    
+    <div class="scale-row">
+      <span class="size-label">2xs</span>
+      <span class="sample text-2xs weight-medium" style="letter-spacing: var(--tracking-wider);">MICRO LABELS IN 11PX</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label">Weight Scale</div>
+    
+    <div class="scale-row">
+      <span class="size-label">900</span>
+      <span class="sample text-xl weight-bold">Black — Maximum emphasis</span>
+    </div>
+    
+    <div class="scale-row">
+      <span class="size-label">700</span>
+      <span class="sample text-xl weight-bold">Bold — Headlines, strong emphasis</span>
+    </div>
+    
+    <div class="scale-row">
+      <span class="size-label">600</span>
+      <span class="sample text-xl weight-semibold">Semibold — Subheadings, labels</span>
+    </div>
+    
+    <div class="scale-row">
+      <span class="size-label">500</span>
+      <span class="sample text-xl weight-medium">Medium — Emphasized body</span>
+    </div>
+    
+    <div class="scale-row">
+      <span class="size-label">400</span>
+      <span class="sample text-xl weight-regular">Regular — Default body weight</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label">Reading Sample</div>
+    <div class="reading-sample">
+      <p>Dispatch delivers a curated daily digest of world news, filtered and summarized by AI to save you time. Each morning, you'll receive 5-8 stories that actually matter — contextualized, fact-checked, and ready to read in under 5 minutes.</p>
+      <p>Unlike algorithmic feeds that prioritize engagement over accuracy, Dispatch focuses on signal over noise. We source from reputable outlets, cross-reference facts, and present multiple perspectives where stories warrant it.</p>
+      <p>The result is news that respects your time and intelligence. No clickbait. No outrage loops. Just the information you need to stay informed and engaged with the world.</p>
+    </div>
+    <div class="meta">
+      <div class="meta-title">Body text specs</div>
+      Font: Archivo 400 | Size: 16px | Line-height: 1.65 | Max-width: 65ch
+    </div>
+  </div>
+</body>
+</html>

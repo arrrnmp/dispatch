@@ -1,0 +1,295 @@
+/* ==========================================================================
+   Dispatch Design System — Design Tokens
+   A curated daily news digest, by Aaron Mompié
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ========================================================================
+     COLORS — Surfaces (6 steps, cool editorial palette)
+     ======================================================================== */
+  --surface-0: #ffffff;        /* Pure white — primary backgrounds */
+  --surface-1: #f8f9fa;        /* Cool gray — soft backgrounds */
+  --surface-2: #f0f2f4;        /* Slightly darker — secondary surfaces */
+  --surface-3: #e8eaec;        /* Borders, dividers background */
+  --surface-4: #1a1a1a;        /* Dark surface — footer, contrast sections */
+  --surface-5: #0a0c10;        /* Deepest dark — near-black */
+
+  /* ========================================================================
+     COLORS — Text (4 steps, cool grays)
+     ======================================================================== */
+  --text-0: #0a0c10;           /* Primary — near-black for headings */
+  --text-1: #3d4249;           /* Secondary — body text */
+  --text-2: #5b6470;           /* Tertiary — muted text, captions */
+  --text-3: #8a9199;           /* Placeholder, disabled */
+
+  /* ========================================================================
+     COLORS — Primary Accent (Deep Blue for trust)
+     ======================================================================== */
+  --primary-0: #e8f0f7;        /* Lightest — soft backgrounds */
+  --primary-1: #b8d4e8;        /* Light — hover backgrounds */
+  --primary-2: #4a7ba7;        /* Medium — secondary elements */
+  --primary: #1a3a5c;          /* Base — primary accent (deep editorial blue) */
+  --primary-3: #0f2640;        /* Dark — active states */
+  --primary-4: #081520;        /* Deepest — hover text */
+
+  /* ========================================================================
+     COLORS — Secondary Accent (Warm Orange for CTAs)
+     ======================================================================== */
+  --accent-0: #fff4ed;         /* Lightest — soft backgrounds */
+  --accent-1: #ffd9c2;         /* Light — hover backgrounds */
+  --accent: #f26522;           /* Base — CTA accent (warm orange) */
+  --accent-2: #d4551c;         /* Dark — hover state */
+  --accent-3: #a63d12;         /* Deepest — active state */
+
+  /* ========================================================================
+     COLORS — Supporting Accents
+     ======================================================================== */
+  /* Deep red-brown (earthy authority) */
+  --terracotta-0: #fdf4f2;
+  --terracotta-1: #c45b4a;
+  --terracotta: #8b3a2e;
+
+  /* Golden mustard (warm highlight) */
+  --mustard-0: #fff9e6;
+  --mustard-1: #d4a84b;
+  --mustard: #b8931f;
+
+  /* Sage green (calm, organic) */
+  --sage-0: #f0f4f0;
+  --sage-1: #7a9a7a;
+  --sage: #4a6b4a;
+
+  /* ========================================================================
+     COLORS — Semantic (status indicators)
+     ======================================================================== */
+  --success-0: #ecf8f0;
+  --success-1: #3ebb7f;
+  --success: #2d8f63;
+
+  --warning-0: #fff8e6;
+  --warning-1: #f0b429;
+  --warning: #d49a1f;
+
+  --error-0: #fdf2f2;
+  --error-1: #e85c5c;
+  --error: #c43d3d;
+
+  --info-0: #e8f4fc;
+  --info-1: #4aa8d8;
+  --info: #2d7aa8;
+
+  /* ========================================================================
+     COLORS — Lines & Borders
+     ======================================================================== */
+  --line-1: rgba(10, 12, 16, 0.06);   /* Subtle dividers */
+  --line-2: rgba(10, 12, 16, 0.12);  /* Default borders */
+  --line-3: rgba(10, 12, 16, 0.20);  /* Focus/active */
+
+  /* ========================================================================
+     TYPOGRAPHY — Font Families
+     ======================================================================== */
+  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-body: 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Monaco, Consolas, monospace;
+
+  /* ========================================================================
+     TYPOGRAPHY — Type Scale (rem based, 16px base)
+     Using modular scale: 1.125 (major second) with 1.25 (major third) at top
+     ======================================================================== */
+  --text-2xs: 0.6875rem;       /* 11px — micro labels */
+  --text-xs: 0.75rem;          /* 12px — captions, timestamps */
+  --text-sm: 0.875rem;         /* 14px — secondary text, labels */
+  --text-base: 1rem;           /* 16px — body */
+  --text-lg: 1.125rem;         /* 18px — lead paragraphs */
+  --text-xl: 1.25rem;          /* 20px — small headings */
+  --text-2xl: 1.5rem;          /* 24px — section headings */
+  --text-3xl: 1.875rem;        /* 30px — large headings */
+  --text-4xl: 2.25rem;         /* 36px — display text */
+  --text-5xl: 3rem;            /* 48px — hero headings */
+  --text-6xl: 3.75rem;         /* 60px — major display */
+
+  /* ========================================================================
+     TYPOGRAPHY — Line Heights
+     ======================================================================== */
+  --leading-none: 1;
+  --leading-tight: 1.2;        /* Headlines */
+  --leading-snug: 1.35;        /* Subheadings */
+  --leading-normal: 1.5;       /* Body (tight for editorial) */
+  --leading-relaxed: 1.65;     /* Long-form reading */
+  --leading-loose: 1.8;        /* Generous spacing */
+
+  /* ========================================================================
+     TYPOGRAPHY — Letter Spacing
+     ======================================================================== */
+  --tracking-tight: -0.02em;   /* Headlines */
+  --tracking-normal: 0;        /* Body */
+  --tracking-wide: 0.01em;     /* Slight expansion */
+  --tracking-wider: 0.04em;    /* Labels, uppercase */
+  --tracking-widest: 0.14em;   /* Micro labels, badges */
+
+  /* ========================================================================
+     TYPOGRAPHY — Font Weights (Archivo variable)
+     ======================================================================== */
+  --weight-thin: 100;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-black: 900;
+
+  /* ========================================================================
+     SPACING — 4px Grid System
+     ======================================================================== */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+  --sp-24: 96px;
+  --sp-32: 128px;
+
+  /* ========================================================================
+     SPACING — Layout
+     ======================================================================== */
+  --container-max: 1200px;     /* Page max-width */
+  --content-max: 720px;        /* Reading max-width */
+  --gutter: var(--sp-6);      /* Default gutters */
+  --section-gap: var(--sp-16); /* Between major sections */
+
+  /* ========================================================================
+     SHADOWS — Restrained scale with cool undertones
+     ======================================================================== */
+  --sh-xs: 0 1px 2px rgba(10, 12, 16, 0.04);
+  --sh-sm: 0 2px 4px rgba(10, 12, 16, 0.06), 0 1px 2px rgba(10, 12, 16, 0.04);
+  --sh-md: 0 4px 8px rgba(10, 12, 16, 0.08), 0 2px 4px rgba(10, 12, 16, 0.04);
+  --sh-lg: 0 8px 16px rgba(10, 12, 16, 0.1), 0 4px 8px rgba(10, 12, 16, 0.06);
+  --sh-xl: 0 12px 24px rgba(10, 12, 16, 0.12), 0 8px 16px rgba(10, 12, 16, 0.08);
+  --sh-2xl: 0 20px 48px rgba(10, 12, 16, 0.12), 0 12px 24px rgba(10, 12, 16, 0.08);
+  --sh-inset: inset 0 2px 4px rgba(10, 12, 16, 0.06);
+  --sh-inner: inset 0 1px 2px rgba(10, 12, 16, 0.08);
+
+  /* ========================================================================
+     ANIMATION — Easing Curves
+     ======================================================================== */
+  --ease-default: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-snappy: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ========================================================================
+     ANIMATION — Durations
+     ======================================================================== */
+  --duration-instant: 100ms;   /* Press feedback */
+  --duration-fast: 150ms;      /* Hover states */
+  --duration-normal: 220ms;    /* Standard transitions */
+  --duration-slow: 350ms;      /* Entry animations */
+  --duration-slower: 500ms;    /* Major reveals */
+
+  /* ========================================================================
+     RADII — Sharp/angular shape language
+     ======================================================================== */
+  --radius-none: 0;            /* Sharp corners — default for editorial */
+  --radius-sm: 4px;            /* Input fields */
+  --radius-md: 8px;            /* Cards, containers */
+  --radius-lg: 12px;           /* Modals, overlays */
+  --radius-xl: 16px;           /* Large containers */
+  --radius-full: 9999px;       /* Pills, badges only */
+
+  /* ========================================================================
+     Z-INDEX — Elevation scale
+     ======================================================================== */
+  --z-base: 0;
+  --z-elevated: 10;
+  --z-dropdown: 20;
+  --z-sticky: 30;
+  --z-drawer: 40;
+  --z-modal: 50;
+  --z-popover: 60;
+  --z-tooltip: 70;
+  --z-toast: 80;
+}
+
+/* ==========================================================================
+   Dark Mode Variables
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Surfaces — inverted for dark mode */
+    --surface-0: #0a0c10;
+    --surface-1: #14161a;
+    --surface-2: #1e2024;
+    --surface-3: #282a2e;
+    --surface-4: #e8eaec;
+    --surface-5: #f0f2f4;
+
+    /* Text — inverted */
+    --text-0: #f8f9fa;
+    --text-1: #e8eaec;
+    --text-2: #a8afb6;
+    --text-3: #6b7178;
+
+    /* Lines — lighter on dark */
+    --line-1: rgba(248, 249, 250, 0.06);
+    --line-2: rgba(248, 249, 250, 0.12);
+    --line-3: rgba(248, 249, 250, 0.20);
+
+    /* Shadows — softer on dark */
+    --sh-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --sh-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --sh-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+    --sh-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+    --sh-xl: 0 12px 24px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* ==========================================================================
+   Utility Classes — Quick reference
+   ========================================================================== */
+
+/* Font families */
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+.font-mono { font-family: var(--font-mono); }
+
+/* Text colors */
+.text-primary { color: var(--text-0); }
+.text-secondary { color: var(--text-1); }
+.text-muted { color: var(--text-2); }
+.text-placeholder { color: var(--text-3); }
+
+/* Surface backgrounds */
+.bg-surface { background-color: var(--surface-0); }
+.bg-surface-soft { background-color: var(--surface-1); }
+.bg-surface-dark { background-color: var(--surface-4); }
+
+/* Accent colors */
+.text-accent { color: var(--primary); }
+.text-cta { color: var(--accent); }
+.bg-accent { background-color: var(--primary); }
+.bg-cta { background-color: var(--accent); }
+
+/* Spacing helpers */
+.stack-2 { margin-top: var(--sp-2); }
+.stack-4 { margin-top: var(--sp-4); }
+.stack-6 { margin-top: var(--sp-6); }
+.stack-8 { margin-top: var(--sp-8); }
+.stack-12 { margin-top: var(--sp-12); }
+
+/* Animation helpers */
+.transition-fast { transition: all var(--duration-fast) var(--ease-snappy); }
+.transition-normal { transition: all var(--duration-normal) var(--ease-default); }
+.transition-slow { transition: all var(--duration-slow) var(--ease-editorial); }

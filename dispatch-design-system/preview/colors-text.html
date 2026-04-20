@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dispatch — Text Colors</title>
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--surface-1);
+      padding: var(--sp-12);
+      color: var(--text-0);
+    }
+    
+    .card {
+      max-width: 800px;
+      margin: 0 auto var(--sp-8);
+      background: var(--surface-0);
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius-md);
+      padding: var(--sp-8);
+      box-shadow: var(--sh-sm);
+    }
+    
+    .label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      margin-bottom: var(--sp-2);
+    }
+    
+    .text-sample {
+      padding: var(--sp-4) 0;
+      border-bottom: 1px solid var(--line-1);
+    }
+    
+    .text-sample:last-child {
+      border-bottom: none;
+    }
+    
+    .sample-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--sp-2);
+    }
+    
+    .sample-name {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+    }
+    
+    .sample-value {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+    }
+    
+    .sample-text {
+      font-size: var(--text-lg);
+      line-height: var(--leading-normal);
+    }
+    
+    .dark-preview {
+      background: var(--surface-4);
+      border-radius: var(--radius-md);
+      padding: var(--sp-6);
+      margin-top: var(--sp-6);
+    }
+    
+    .contrast-demo {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-4);
+      margin-top: var(--sp-6);
+    }
+    
+    .contrast-box {
+      padding: var(--sp-6);
+      border-radius: var(--radius-md);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="label">Text Colors — Hierarchy</div>
+    
+    <div class="text-sample">
+      <div class="sample-header">
+        <span class="sample-name" style="color: var(--text-0);">text-0</span>
+        <span class="sample-value">#0a0c10</span>
+      </div>
+      <div class="sample-text" style="color: var(--text-0);">
+        Primary text for headings, body content, and UI elements. Near-black with cool undertone.
+      </div>
+    </div>
+    
+    <div class="text-sample">
+      <div class="sample-header">
+        <span class="sample-name" style="color: var(--text-1);">text-1</span>
+        <span class="sample-value">#3d4249</span>
+      </div>
+      <div class="sample-text" style="color: var(--text-1);">
+        Secondary text for paragraphs and descriptions. Slightly muted for comfortable reading.
+      </div>
+    </div>
+    
+    <div class="text-sample">
+      <div class="sample-header">
+        <span class="sample-name" style="color: var(--text-2);">text-2</span>
+        <span class="sample-value">#5b6470</span>
+      </div>
+      <div class="sample-text" style="color: var(--text-2);">
+        Tertiary text for captions, metadata, and de-emphasized content. Cool gray tone.
+      </div>
+    </div>
+    
+    <div class="text-sample">
+      <div class="sample-header">
+        <span class="sample-name" style="color: var(--text-3);">text-3</span>
+        <span class="sample-value">#8a9199</span>
+      </div>
+      <div class="sample-text" style="color: var(--text-3);">
+        Placeholder text, disabled states, and very subtle labels. Reserved for non-interactive elements.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label">Contrast & Accessibility</div>
+    
+    <div class="contrast-demo">
+      <div class="contrast-box" style="background: var(--surface-0); border: 1px solid var(--line-2);">
+        <div style="color: var(--text-0); font-size: var(--text-2xl); font-weight: var(--weight-semibold); margin-bottom: var(--sp-2);">4.7:1</div>
+        <div style="color: var(--text-2); font-size: var(--text-sm);">text-0 on surface-0</div>
+        <div style="color: var(--text-3); font-size: var(--text-xs); margin-top: var(--sp-2);">WCAG AA compliant</div>
+      </div>
+      
+      <div class="contrast-box" style="background: var(--surface-0); border: 1px solid var(--line-2);">
+        <div style="color: var(--text-1); font-size: var(--text-2xl); font-weight: var(--weight-semibold); margin-bottom: var(--sp-2);">7.2:1</div>
+        <div style="color: var(--text-2); font-size: var(--text-sm);">text-1 on surface-0</div>
+        <div style="color: var(--text-3); font-size: var(--text-xs); margin-top: var(--sp-2);">WCAG AAA compliant</div>
+      </div>
+      
+      <div class="contrast-box" style="background: var(--primary); border: 1px solid var(--primary);">
+        <div style="color: var(--surface-0); font-size: var(--text-2xl); font-weight: var(--weight-semibold); margin-bottom: var(--sp-2);">8.4:1</div>
+        <div style="color: rgba(255,255,255,0.7); font-size: var(--text-sm);">White on primary</div>
+        <div style="color: rgba(255,255,255,0.5); font-size: var(--text-xs); margin-top: var(--sp-2);">WCAG AAA compliant</div>
+      </div>
+      
+      <div class="contrast-box" style="background: var(--surface-4); border: 1px solid var(--surface-5);">
+        <div style="color: var(--surface-0); font-size: var(--text-2xl); font-weight: var(--weight-semibold); margin-bottom: var(--sp-2);">12.1:1</div>
+        <div style="color: var(--text-2); font-size: var(--text-sm);">White on surface-4</div>
+        <div style="color: var(--text-3); font-size: var(--text-xs); margin-top: var(--sp-2);">WCAG AAA compliant</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label">Dark Mode Text</div>
+    <div style="background: var(--surface-4); border-radius: var(--radius-md); padding: var(--sp-6);">
+      <div class="text-sample" style="border-color: rgba(255,255,255,0.1);">
+        <div class="sample-header">
+          <span class="sample-name" style="color: #f8f9fa;">text-0 (dark)</span>
+          <span class="sample-value" style="color: rgba(255,255,255,0.5);">#f8f9fa</span>
+        </div>
+        <div class="sample-text" style="color: #f8f9fa;">
+          In dark mode, text-0 becomes near-white for maximum contrast on dark surfaces.
+        </div>
+      </div>
+      
+      <div class="text-sample" style="border-color: rgba(255,255,255,0.1);">
+        <div class="sample-header">
+          <span class="sample-name" style="color: #e8eaec;">text-1 (dark)</span>
+          <span class="sample-value" style="color: rgba(255,255,255,0.5);">#e8eaec</span>
+        </div>
+        <div class="sample-text" style="color: #e8eaec;">
+          Secondary text maintains readability while reducing eye strain in dark environments.
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dispatch — Form Inputs</title>
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--surface-1);
+      padding: var(--sp-12);
+      color: var(--text-0);
+    }
+    
+    .card {
+      max-width: 800px;
+      margin: 0 auto var(--sp-8);
+      background: var(--surface-0);
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius-md);
+      padding: var(--sp-8);
+      box-shadow: var(--sh-sm);
+    }
+    
+    .label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      margin-bottom: var(--sp-4);
+    }
+    
+    .section-title {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-semibold);
+      margin-bottom: var(--sp-4);
+      padding-bottom: var(--sp-2);
+      border-bottom: 1px solid var(--line-1);
+    }
+    
+    .form-group {
+      margin-bottom: var(--sp-5);
+    }
+    
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+    
+    .form-label {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+      color: var(--text-0);
+      margin-bottom: var(--sp-2);
+    }
+    
+    .form-hint {
+      font-size: var(--text-xs);
+      color: var(--text-2);
+      margin-top: var(--sp-2);
+    }
+    
+    .form-error {
+      font-size: var(--text-xs);
+      color: var(--error);
+      margin-top: var(--sp-2);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-1);
+    }
+    
+    /* Text Input */
+    .input {
+      width: 100%;
+      padding: var(--sp-3) var(--sp-4);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--text-0);
+      background: var(--surface-0);
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius-sm);
+      transition: all var(--duration-fast) var(--ease-snappy);
+    }
+    
+    .input:hover {
+      border-color: var(--line-3);
+    }
+    
+    .input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-0);
+    }
+    
+    .input::placeholder {
+      color: var(--text-3);
+    }
+    
+    .input:disabled {
+      background: var(--surface-1);
+      color: var(--text-3);
+      cursor: not-allowed;
+    }
+    
+    .input.error {
+      border-color: var(--error);
+    }
+    
+    .input.error:focus {
+      box-shadow: 0 0 0 3px var(--error-0);
+    }
+    
+    /* Textarea */
+    .textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: var(--sp-3) var(--sp-4);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--text-0);
+      background: var(--surface-0);
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius-sm);
+      resize: vertical;
+      transition: all var(--duration-fast) var(--ease-snappy);
+    }
+    
+    .textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-0);
+    }
+    
+    /* Select */
+    .select-wrapper {
+      position: relative;
+    }
+    
+    .select {
+      width: 100%;
+      padding: var(--sp-3) var(--sp-4);
+      padding-right: var(--sp-10);
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--text-0);
+      background: var(--surface-0);
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius-sm);
+      appearance: none;
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-snappy);
+    }
+    
+    .select:hover {
+      border-color: var(--line-3);
+    }
+    
+    .select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-0);
+    }
+    
+    .select-wrapper::after {
+      content: '▼';
+      position: absolute;
+      right: var(--sp-4);
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+      pointer-events: none;
+    }
+    
+    /* Input with icon */
+    .input-group {
+      position: relative;
+    }
+    
+    .input-icon {
+      position: absolute;
+      left: var(--sp-4);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-2);
+      font-size: var(--text-base);
+    }
+    
+    .input.with-icon {
+      padding-left: var(--sp-10);
+    }
+    
+    /* Checkbox and Radio */
+    .checkbox-group,
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+    }
+    
+    .checkbox-label,
+    .radio-label {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-3);
+      cursor: pointer;
+      font-size: var(--text-sm);
+      color: var(--text-1);
+    }
+    
+    .checkbox-input,
+    .radio-input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+    
+    .checkbox-text,
+    .radio-text {
+      flex: 1;
+    }
+    
+    /* Toggle switch */
+    .toggle {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      cursor: pointer;
+    }
+    
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: var(--surface-3);
+      border-radius: var(--radius-full);
+      transition: background var(--duration-fast) var(--ease-snappy);
+    }
+    
+    .toggle-input {
+      display: none;
+    }
+    
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: var(--surface-0);
+      border-radius: 50%;
+      transition: transform var(--duration-fast) var(--ease-spring);
+      box-shadow: var(--sh-sm);
+    }
+    
+    .toggle-input:checked + .toggle-switch {
+      background: var(--primary);
+    }
+    
+    .toggle-input:checked + .toggle-switch::after {
+      transform: translateX(20px);
+    }
+    
+    .toggle-label {
+      font-size: var(--text-sm);
+      color: var(--text-1);
+    }
+    
+    /* Dark section */
+    .dark-section {
+      background: var(--surface-4);
+      border-radius: var(--radius-md);
+      padding: var(--sp-6);
+      margin-top: var(--sp-6);
+    }
+    
+    .dark-section .input,
+    .dark-section .textarea,
+    .dark-section .select {
+      background: var(--surface-5);
+      border-color: rgba(255,255,255,0.1);
+      color: var(--surface-0);
+    }
+    
+    .dark-section .form-label {
+      color: var(--surface-0);
+    }
+    
+    .meta {
+      font-size: var(--text-sm);
+      color: var(--text-2);
+      margin-top: var(--sp-6);
+      padding-top: var(--sp-6);
+      border-top: 1px solid var(--line-1);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="section-title">Text Inputs</div>
+    
+    <div class="form-group">
+      <label class="form-label">Email address</label>
+      <input type="email" class="input" placeholder="you@example.com">
+      <div class="form-hint">We'll never share your email.</div>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Password</label>
+      <input type="password" class="input" placeholder="••••••••">
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">With error</label>
+      <input type="email" class="input error" value="invalid-email">
+      <div class="form-error">Please enter a valid email address</div>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Disabled</label>
+      <input type="text" class="input" value="readonly@example.com" disabled>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">With icon</label>
+      <div class="input-group">
+        <span class="input-icon">@</span>
+        <input type="text" class="input with-icon" placeholder="username">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Textarea</div>
+    
+    <div class="form-group">
+      <label class="form-label">Feedback</label>
+      <textarea class="textarea" placeholder="Tell us what you think..."></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Select</div>
+    
+    <div class="form-group">
+      <label class="form-label">Delivery time</label>
+      <div class="select-wrapper">
+        <select class="select">
+          <option>7:00 AM</option>
+          <option>8:00 AM</option>
+          <option>9:00 AM</option>
+          <option>6:00 PM</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Timezone</label>
+      <div class="select-wrapper">
+        <select class="select">
+          <option>Pacific Time (PT)</option>
+          <option>Eastern Time (ET)</option>
+          <option>Central European Time (CET)</option>
+          <option>Greenwich Mean Time (GMT)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Checkboxes</div>
+    
+    <div class="checkbox-group">
+      <label class="checkbox-label">
+        <input type="checkbox" class="checkbox-input" checked>
+        <span class="checkbox-text">World News</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" class="checkbox-input" checked>
+        <span class="checkbox-text">Technology</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" class="checkbox-input">
+        <span class="checkbox-text">Science</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" class="checkbox-input">
+        <span class="checkbox-text">Business</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Radio Buttons</div>
+    
+    <div class="radio-group">
+      <label class="radio-label">
+        <input type="radio" name="frequency" class="radio-input" checked>
+        <span class="radio-text">Daily digest</span>
+      </label>
+      <label class="radio-label">
+        <input type="radio" name="frequency" class="radio-input">
+        <span class="radio-text">Weekly summary</span>
+      </label>
+      <label class="radio-label">
+        <input type="radio" name="frequency" class="radio-input">
+        <span class="radio-text">Both</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">Toggle Switch</div>
+    
+    <div style="display: flex; flex-direction: column; gap: var(--sp-4);">
+      <label class="toggle">
+        <input type="checkbox" class="toggle-input" checked>
+        <span class="toggle-switch"></span>
+        <span class="toggle-label">Email notifications</span>
+      </label>
+      
+      <label class="toggle">
+        <input type="checkbox" class="toggle-input">
+        <span class="toggle-switch"></span>
+        <span class="toggle-label">Dark mode</span>
+      </label>
+      
+      <label class="toggle">
+        <input type="checkbox" class="toggle-input" checked>
+        <span class="toggle-switch"></span>
+        <span class="toggle-label">Weekly summary</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="meta">
+      <div style="font-weight: var(--weight-medium); margin-bottom: var(--sp-2);">Input guidelines</div>
+      <div style="display: flex; flex-direction: column; gap: var(--sp-2);">
+        <div><strong>Border radius:</strong> 4px for inputs (smaller than buttons for differentiation)</div>
+        <div><strong>Focus ring:</strong> 3px spread using primary-0 color</div>
+        <div><strong>Padding:</strong> 12px 16px for comfortable touch targets</div>
+        <div><strong>Error states:</strong> Red border + error message below</div>
+        <div><strong>Icons:</strong> Left-aligned inside input, 16px size</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

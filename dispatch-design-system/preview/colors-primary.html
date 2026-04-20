@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dispatch — Primary & Accent Colors</title>
+  <link rel="stylesheet" href="../colors_and_type.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--surface-1);
+      padding: var(--sp-12);
+      color: var(--text-0);
+    }
+    
+    .card {
+      max-width: 800px;
+      margin: 0 auto var(--sp-8);
+      background: var(--surface-0);
+      border: 1px solid var(--line-2);
+      border-radius: var(--radius-md);
+      padding: var(--sp-8);
+      box-shadow: var(--sh-sm);
+    }
+    
+    .label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-widest);
+      margin-bottom: var(--sp-4);
+    }
+    
+    .palette-section {
+      margin-bottom: var(--sp-8);
+    }
+    
+    .palette-section:last-child {
+      margin-bottom: 0;
+    }
+    
+    .palette-title {
+      font-size: var(--text-lg);
+      font-weight: var(--weight-semibold);
+      margin-bottom: var(--sp-4);
+      padding-bottom: var(--sp-2);
+      border-bottom: 1px solid var(--line-1);
+    }
+    
+    .scale-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: var(--sp-3);
+    }
+    
+    .scale-item {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--line-2);
+    }
+    
+    .scale-color {
+      height: 64px;
+      display: flex;
+      align-items: flex-end;
+      padding: var(--sp-2);
+    }
+    
+    .scale-info {
+      padding: var(--sp-2) var(--sp-3);
+      background: var(--surface-0);
+      border-top: 1px solid var(--line-1);
+    }
+    
+    .scale-name {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      color: var(--text-0);
+    }
+    
+    .scale-value {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xs);
+      color: var(--text-2);
+    }
+    
+    .usage-row {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      padding: var(--sp-3) 0;
+      border-bottom: 1px solid var(--line-1);
+    }
+    
+    .usage-row:last-child {
+      border-bottom: none;
+    }
+    
+    .usage-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-sm);
+      flex-shrink: 0;
+    }
+    
+    .btn-demo {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: var(--sp-3) var(--sp-5);
+      border-radius: var(--radius-md);
+      font-weight: var(--weight-medium);
+      font-size: var(--text-sm);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-snappy);
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: var(--surface-0);
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-3);
+    }
+    
+    .btn-accent {
+      background: var(--accent);
+      color: var(--surface-0);
+      border: none;
+    }
+    
+    .btn-accent:hover {
+      background: var(--accent-2);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary-0);
+    }
+    
+    .button-row {
+      display: flex;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+      margin-top: var(--sp-4);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="palette-section">
+      <div class="palette-title" style="color: var(--primary);">Primary — Editorial Blue</div>
+      <div class="label">Trust, authority, content hierarchy</div>
+      
+      <div class="scale-grid">
+        <div class="scale-item">
+          <div class="scale-color" style="background: var(--primary-0);">
+            <span style="font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-2);">primary-0</span>
+          </div>
+          <div class="scale-info">
+            <div class="scale-name">primary-0</div>
+            <div class="scale-value">#e8f0f7</div>
+          </div>
+        </div>
+        
+        <div class="scale-item">
+          <div class="scale-color" style="background: var(--primary-1);">
+            <span style="font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-1);">primary-1</span>
+          </div>
+          <div class="scale-info">
+            <div class="scale-name">primary-1</div>
+            <div class="scale-value">#b8d4e8</div>
+          </div>
+        </div>
+        
+        <div class="scale-item">
+          <div class="scale-color" style="background: var(--primary-2);">
+            <span style="font-family: var(--font-mono); font-size: var(--text-2xs); color: white;">primary-2</span>
+          </div>
+          <div class="scale-info">
+            <div class="scale-name">primary-2</div>
+            <div class="scale-value">#4a7ba7</div>
+          </div>
+        </div>
+        
+        <div class="scale-item">
+          <div class="scale-color" style="background: var(--primary);">
+            <span style="font-family: var(--font-mono); font-size: var(--text-2xs); color: white;">primary</span>
+          </div>
+          <div class="scale-info">
+            <div class="scale-name">primary</div>
+            <div class="scale-value">#1a3a5c</div>
+          </div>
+        </div>
+        
+        <div class="scale-item">
+          <div class="scale-color" style="background: var(--primary-3);">
+            <span style="font-family: var(--font-mono); font-size: var(--text-2xs); color: white;">primary-3</span>
+          </div>
+          <div class="scale-info">
+            <div class="scale-name">primary-3</div>
+            <div class="scale-value">#0f2640</div>
+          </div>
+        </div>
+        
+        <div class="scale-item">
+          <div class="scale-color" style="background: var(--primary-4);">
+            <span style="font-family: var(--font-mono); font-size: var(--text-2xs); color: white;">primary-4</span>
+          </div>
+          <div class="scale-info">
+            <div class="scale-name">primary-4</div>
+            <div class="scale-value">#081520</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="palette-section">
+      <div class="palette-title" style="color: var(--accent);">Secondary — CTA Orange</div>
+      <div class="label">Action, energy, conversion points</div>
+      
+      <div class="scale-grid">
+        <div class="scale-item">
+          <div class="scale-color" style="background: var(--accent-0);">
+            <span style="font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-2);">accent-0</span>
+          </div>
+          <div class="scale-info">
+            <div class="scale-name">accent-0</div>
+            <div class="scale-value">#fff4ed</div>
+          </div>
+        </div>
+        
+        <div class="scale-item">
+          <div class="scale-color" style="background: var(--accent-1);">
+            <span style="font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-1);">accent-1</span>
+          </div>
+          <div class="scale-info">
+            <div class="scale-name">accent-1</div>
+            <div class="scale-value">#ffd9c2</div>
+          </div>
+        </div>
+        
+        <div class="scale-item">
+          <div class="scale-color" style="background: var(--accent);">
+            <span style="font-family: var(--font-mono); font-size: var(--text-2xs); color: white;">accent</span>
+          </div>
+          <div class="scale-info">
+            <div class="scale-name">accent</div>
+            <div class="scale-value">#f26522</div>
+          </div>
+        </div>
+        
+        <div class="scale-item">
+          <div class="scale-color" style="background: var(--accent-2);">
+            <span style="font-family: var(--font-mono); font-size: var(--text-2xs); color: white;">accent-2</span>
+          </div>
+          <div class="scale-info">
+            <div class="scale-name">accent-2</div>
+            <div class="scale-value">#d4551c</div>
+          </div>
+        </div>
+        
+        <div class="scale-item">
+          <div class="scale-color" style="background: var(--accent-3);">
+            <span style="font-family: var(--font-mono); font-size: var(--text-2xs); color: white;">accent-3</span>
+          </div>
+          <div class="scale-info">
+            <div class="scale-name">accent-3</div>
+            <div class="scale-value">#a63d12</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="label">Usage Guidelines</div>
+    
+    <div class="usage-row">
+      <div class="usage-dot" style="background: var(--primary);"></div>
+      <div>
+        <div style="font-weight: var(--weight-medium); margin-bottom: var(--sp-1);">Primary — Editorial Blue (#1a3a5c)</div>
+        <div style="font-size: var(--text-sm); color: var(--text-2);">Headlines, links, trust indicators. Conveys authority and journalistic integrity.</div>
+      </div>
+    </div>
+    
+    <div class="usage-row">
+      <div class="usage-dot" style="background: var(--accent);"></div>
+      <div>
+        <div style="font-weight: var(--weight-medium); margin-bottom: var(--sp-1);">Accent — CTA Orange (#f26522)</div>
+        <div style="font-size: var(--text-sm); color: var(--text-2);">Primary buttons, CTAs, highlights. Reserved for conversion actions.</div>
+      </div>
+    </div>
+    
+    <div class="usage-row">
+      <div class="usage-dot" style="background: var(--primary-0);"></div>
+      <div>
+        <div style="font-weight: var(--weight-medium); margin-bottom: var(--sp-1);">Primary Light States</div>
+        <div style="font-size: var(--text-sm); color: var(--text-2);">Hover backgrounds, soft badges, selected states. Use primary-0 or primary-1.</div>
+      </div>
+    </div>
+    
+    <div class="button-row">
+      <button class="btn-demo btn-primary">Primary Button</button>
+      <button class="btn-demo btn-accent">CTA Button</button>
+      <button class="btn-demo btn-outline">Outline Button</button>
+    </div>
+  </div>
+</body>
+</html>
