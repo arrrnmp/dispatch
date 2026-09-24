@@ -1,0 +1,29 @@
+---
+interface Props {
+  date: string;
+  edition: string;
+  title: string;
+  subtitle: string;
+  storyCount: number;
+  readTime: number;
+  sourceCount: number;
+}
+
+const { date, edition, title, subtitle, storyCount, readTime, sourceCount } = Astro.props;
+---
+
+<div class="edition-header">
+  <div class="edition-meta">
+    <span class="dot"></span>
+    <span>{date}</span>
+    <span>·</span>
+    <span>{edition}</span>
+  </div>
+  <h1 class="edition-title">{title}</h1>
+  <p class="edition-subtitle">{subtitle}</p>
+  <div class="edition-stats">
+    <span><span class="stat-value">{storyCount}</span> stories</span>
+    <span><span class="stat-value">{readTime}</span> min read</span>
+    <span><span class="stat-value">{sourceCount}</span> sources</span>
+  </div>
+</div>

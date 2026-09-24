@@ -1,0 +1,12 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<div class="ai-commentary">
+  <div class="ai-commentary-label">Dispatch Note</div>
+  <p class="ai-commentary-text">{text}</p>
+</div>

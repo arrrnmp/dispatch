@@ -1,0 +1,19 @@
+---
+interface Props {
+  date: string;
+  headline: string;
+  storyCount: number;
+  readTime: number;
+  href: string;
+  sections?: string;
+  sortDate?: string;
+}
+
+const { date, headline, storyCount, readTime, href, sections = '', sortDate = '' } = Astro.props;
+---
+
+<a class="archive-card" href={href} data-sections={sections} data-date={sortDate}>
+  <div class="archive-date">{date}</div>
+  <h3 class="archive-headline">{headline}</h3>
+  <div class="archive-count">{storyCount} stories &middot; {readTime} min</div>
+</a>

@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SearchBar from '../components/SearchBar.astro';
+import FilterChip from '../components/FilterChip.astro';
+import DateNav from '../components/DateNav.astro';
+import CalendarStrip from '../components/CalendarStrip.astro';
+import ArchiveCard from '../components/ArchiveCard.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const editions = await getCollection('editions');
+const sorted = editions.sort((a, b) => b.id.localeCompare(a.id));
+
+const editionDates = new Set(sorted.map(e => e.id.replace(/\.md$/, '')));
+
+const year = 2026;
+const month = 3;
+const daysInMonth = new Date(year, month + 1, 0).getDate();
+const firstDay = new Date(year, month, 1).getDay();
+const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+const calDays = Array.from({ length: daysInMonth }, (_, i) => {
+  const d = i + 1;
+  const dateStr = `2026-04-${String(d).padStart(2, '0')}`;
+  const dayOfWeek = new Date(year, month, d).getDay();
+  return {
+    weekday: weekdays[dayOfWeek],
+    date: d,
+    hasEdition: editionDates.has(dateStr),
+    active: false,
+    'data-date': dateStr,
+  };
+});
+
+const categories = ['All', 'World', 'Tech', 'Markets', 'Culture'];
+---
+
+<BaseLayout title="Archive" currentPage="archive">
+  <div class="edition-header">
+    <div class="edition-meta">
+      <span>Archive</span>
+    </div>
+    <h1 class="edition-title" style="font-size:var(--text-4xl);">Past Editions</h1>
+    <p class="edition-subtitle">Browse every dispatch by date or search by keyword.</p>
+  </div>
+
+  <SearchBar />
+
+  <div class="filter-bar">
+    {categories.map((cat, i) => (
+      <FilterChip label={cat} active={i === 0} data-filter={cat.toLowerCase()} />
+    ))}
+  </div>
+
+  <DateNav month="April 2026" />
+
+  <CalendarStrip days={calDays} />
+
+  <div class="archive-grid" id="archive-grid">
+    {sorted.map(edition => {
+      const dateId = edition.id.replace(/\.md$/, '');
+      const sectionSlugs = edition.data.sections.map(s => s.slug).join(',');
+      return (
+        <ArchiveCard
+          date={edition.data.date}
+          headline={edition.data.title}
+          storyCount={edition.data.storyCount}
+          readTime={edition.data.readTime}
+          href={`/editions/${dateId}`}
+          sections={sectionSlugs}
+          sortDate={dateId}
+        />
+      );
+    })}
+  </div>
+
+  <div class="empty-state" id="no-results" style="display:none;">
+    <div class="empty-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    </div>
+    <h3 class="empty-title">No editions found</h3>
+    <p class="empty-text">Try adjusting your filters or search query.</p>
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  const grid = document.getElementById('archive-grid');
+  const noResults = document.getElementById('no-results');
+  const cards = grid?.querySelectorAll('.archive-card') ?? [];
+  const chips = document.querySelectorAll('.filter-chip');
+  const days = document.querySelectorAll('.calendar-day');
+  const searchInput = document.querySelector('.search-input') as HTMLInputElement | null;
+
+  let activeFilter = 'all';
+  let activeDate = '';
+  let searchQuery = '';
+
+  function filterCards() {
+    let visible = 0;
+    cards.forEach(card => {
+      const sections = (card.getAttribute('data-sections') ?? '').split(',');
+      const cardDate = card.getAttribute('data-date') ?? '';
+      const headline = (card.querySelector('.archive-headline')?.textContent ?? '').toLowerCase();
+      const date = (card.querySelector('.archive-date')?.textContent ?? '').toLowerCase();
+
+      const matchFilter = activeFilter === 'all' || sections.includes(activeFilter);
+      const matchDate = !activeDate || cardDate === activeDate;
+      const matchSearch = !searchQuery || headline.includes(searchQuery) || date.includes(searchQuery);
+
+      const show = matchFilter && matchDate && matchSearch;
+      (card as HTMLElement).style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    if (grid) grid.style.display = visible > 0 ? '' : 'none';
+    if (noResults) noResults.style.display = visible > 0 ? 'none' : '';
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeFilter = (chip.getAttribute('data-filter') ?? 'all').toLowerCase();
+      filterCards();
+    });
+  });
+
+  days.forEach(day => {
+    day.addEventListener('click', () => {
+      if (day.classList.contains('active')) {
+        day.classList.remove('active');
+        activeDate = '';
+      } else {
+        days.forEach(d => d.classList.remove('active'));
+        day.classList.add('active');
+        activeDate = day.getAttribute('data-date') ?? '';
+      }
+      filterCards();
+    });
+  });
+
+  searchInput?.addEventListener('input', () => {
+    searchQuery = searchInput.value.toLowerCase().trim();
+    filterCards();
+  });
+</script>

@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  placeholder?: string;
+  id?: string;
+}
+
+const { placeholder = 'Search stories, topics, or keywords…', id = 'archive-search' } = Astro.props;
+---
+
+<div class="search-bar">
+  <span class="search-icon">
+    <Icon name="search" />
+  </span>
+  <input
+    class="search-input"
+    type="search"
+    id={id}
+    name={id}
+    placeholder={placeholder}
+  />
+</div>

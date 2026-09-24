@@ -1,0 +1,15 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  name: string;
+  href: string;
+}
+
+const { name, href } = Astro.props;
+---
+
+<a class="source-link" href={href} target="_blank" rel="noopener noreferrer">
+  {name}
+  <Icon name="arrow-up-right" size="14" />
+</a>

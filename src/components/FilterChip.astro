@@ -1,0 +1,14 @@
+---
+interface Props {
+  label: string;
+  active?: boolean;
+  'data-filter'?: string;
+}
+
+const { label, active = false } = Astro.props;
+const dataFilter = Astro.props['data-filter'];
+---
+
+<button class:list={['filter-chip', { active }]} data-filter={dataFilter}>
+  {label}
+</button>

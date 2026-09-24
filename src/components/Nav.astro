@@ -1,0 +1,49 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  currentPage?: 'today' | 'archive' | 'explore' | 'topics';
+}
+
+const { currentPage = 'today' } = Astro.props;
+
+const links = [
+  { href: '/', label: 'Today', page: 'today' },
+  { href: '/archive', label: 'Archive', page: 'archive' },
+  { href: '/topics/', label: 'Explore', page: 'explore' },
+];
+---
+
+<nav class="nav">
+  <div class="nav-brand-group">
+    <a class="nav-brand" href="/">
+      Dispatch
+      <span class="accent"></span>
+    </a>
+    <a href="https://aaronmompie.com" class="author-credit" target="_blank" rel="noopener">
+      by Aaron Mompié
+      <span class="author-accent"></span>
+    </a>
+  </div>
+  <div class="nav-links">
+    {links.map(link => (
+      <a
+        class:list={['nav-link', { active: currentPage === link.page }]}
+        href={link.href}
+      >
+        {link.label}
+      </a>
+    ))}
+  </div>
+  <div class="nav-actions">
+    <button class="nav-icon-btn" aria-label="Search">
+      <Icon name="search" />
+    </button>
+    <button class="nav-icon-btn" aria-label="Saved">
+      <Icon name="bookmark" />
+    </button>
+    <button class="nav-icon-btn" aria-label="Settings">
+      <Icon name="settings" />
+    </button>
+  </div>
+</nav>

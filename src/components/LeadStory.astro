@@ -1,0 +1,32 @@
+---
+import Badge from './Badge.astro';
+import Button from './Button.astro';
+
+interface Props {
+  kicker: string;
+  headline: string;
+  summary: string;
+  section: 'world' | 'tech' | 'markets' | 'culture';
+  sourceCount: number;
+  readTime: number;
+  breaking?: boolean;
+}
+
+const { kicker, headline, summary, section, sourceCount, readTime, breaking = false } = Astro.props;
+---
+
+<div class="lead-story">
+  <p class="lead-kicker">{kicker}</p>
+  <h2 class="lead-headline">{headline}</h2>
+  <p class="lead-summary">{summary}</p>
+  <div class="lead-meta">
+    <Badge variant={section} label={section.charAt(0).toUpperCase() + section.slice(1)} />
+    <span>{sourceCount} sources</span>
+    <span>·</span>
+    <span>{readTime} min read</span>
+  </div>
+  <div class="lead-actions">
+    <Button variant="ghost" icon="bookmark">Save</Button>
+    <Button variant="ghost" icon="share-2">Share</Button>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+---
+import Badge from './Badge.astro';
+import SourceLink from './SourceLink.astro';
+import AiCommentary from './AiCommentary.astro';
+
+interface Source {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  headline: string;
+  body: string[];
+  section: 'world' | 'tech' | 'markets' | 'culture';
+  sources: Source[];
+  breaking?: boolean;
+  aiCommentary?: string;
+}
+
+const { headline, body, section, sources, breaking = false, aiCommentary } = Astro.props;
+---
+
+<article class="story-detail">
+  <div class="topic-badge-row">
+    <Badge variant={section} label={section.charAt(0).toUpperCase() + section.slice(1)} />
+    {breaking && <Badge variant="breaking" label="Breaking" />}
+  </div>
+  <h2 class="story-detail-headline">{headline}</h2>
+  {body.map(paragraph => (
+    <p class="story-detail-body">{paragraph}</p>
+  ))}
+  <div class="story-detail-sources">
+    {sources.map(source => (
+      <SourceLink name={source.name} href={source.url} />
+    ))}
+  </div>
+  {aiCommentary && <AiCommentary text={aiCommentary} />}
+</article>

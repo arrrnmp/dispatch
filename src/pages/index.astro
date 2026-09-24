@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EditionHeader from '../components/EditionHeader.astro';
+import LeadStory from '../components/LeadStory.astro';
+import Section from '../components/Section.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const editions = await getCollection('editions');
+const sorted = editions.sort((a, b) => b.id.localeCompare(a.id));
+const latest = sorted[0];
+const { data } = latest;
+
+// Filter out hidden stories
+const visibleSections = data.sections.map(section => ({
+  ...section,
+  stories: section.stories.filter(story => !story.hidden)
+})).filter(section => section.stories.length > 0);
+---
+
+<BaseLayout title="Today" currentPage="today">
+  <EditionHeader
+    date={data.date}
+    edition={data.edition}
+    title={data.title}
+    subtitle={data.subtitle}
+    storyCount={data.storyCount}
+    readTime={data.readTime}
+    sourceCount={data.sourceCount}
+  />
+
+  {!data.leadStory.hidden && (
+    <LeadStory
+      kicker={data.leadStory.kicker}
+      headline={data.leadStory.headline}
+      summary={data.leadStory.summary}
+      section={data.leadStory.section}
+      sourceCount={data.leadStory.sourceCount}
+      readTime={data.leadStory.readTime}
+      breaking={data.leadStory.breaking}
+    />
+  )}
+
+  {visibleSections.map(section => (
+    <Section
+      name={section.name}
+      slug={section.slug}
+      stories={section.stories}
+    />
+  ))}
+
+  <Footer />
+</BaseLayout>

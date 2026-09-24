@@ -1,0 +1,30 @@
+---
+interface CalDay {
+  weekday: string;
+  date: number;
+  hasEdition?: boolean;
+  active?: boolean;
+  'data-date'?: string;
+}
+
+interface Props {
+  days: CalDay[];
+}
+
+const { days } = Astro.props;
+---
+
+<div class="calendar-strip">
+  {days.map(day => (
+    <div
+      class:list={[
+        'calendar-day',
+        { 'has-edition': day.hasEdition, active: day.active },
+      ]}
+      data-date={day['data-date']}
+    >
+      <span class="cal-weekday">{day.weekday}</span>
+      <span class="cal-date">{day.date}</span>
+    </div>
+  ))}
+</div>

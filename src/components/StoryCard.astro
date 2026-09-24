@@ -1,0 +1,25 @@
+---
+import Badge from './Badge.astro';
+
+interface Props {
+  kicker: string;
+  headline: string;
+  summary: string;
+  section: 'world' | 'tech' | 'markets' | 'culture';
+  sourceCount: number;
+  readTime: number;
+}
+
+const { kicker, headline, summary, section, sourceCount, readTime } = Astro.props;
+---
+
+<div class="story-card">
+  <Badge variant={section} label={kicker} />
+  <h3>{headline}</h3>
+  <p>{summary}</p>
+  <div class="story-meta">
+    <span>{sourceCount} sources</span>
+    <span class="sep">·</span>
+    <span>{readTime} min read</span>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+---
+interface Props {
+  variant: 'breaking' | 'world' | 'tech' | 'markets' | 'culture' | 'default';
+  label: string;
+}
+
+const { variant, label } = Astro.props;
+---
+
+<span class:list={['badge', variant !== 'default' && `badge-${variant}`]}>
+  {label}
+</span>

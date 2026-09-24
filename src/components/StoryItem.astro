@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  headline: string;
+  summary: string;
+  sourceCount: number;
+  readTime: number;
+}
+
+const { headline, summary, sourceCount, readTime } = Astro.props;
+---
+
+<li class="story-item">
+  <div class="story-content">
+    <h3 class="story-headline">{headline}</h3>
+    <p class="story-summary">{summary}</p>
+    <div class="story-meta">
+      <span>{sourceCount} sources</span>
+      <span class="sep">·</span>
+      <span>{readTime} min read</span>
+    </div>
+  </div>
+  <div class="story-actions">
+    <button class="story-action-btn" title="Save">
+      <Icon name="bookmark" size="16" />
+    </button>
+    <button class="story-action-btn" title="Share">
+      <Icon name="share-2" size="16" />
+    </button>
+  </div>
+</li>

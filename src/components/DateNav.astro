@@ -1,0 +1,19 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  month: string;
+}
+
+const { month } = Astro.props;
+---
+
+<div class="date-nav">
+  <button class="date-nav-btn" aria-label="Previous month">
+    <Icon name="chevron-left" size="16" />
+  </button>
+  <span class="date-nav-label">{month}</span>
+  <button class="date-nav-btn" aria-label="Next month">
+    <Icon name="chevron-right" size="16" />
+  </button>
+</div>

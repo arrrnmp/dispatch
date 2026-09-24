@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Badge from '../../components/Badge.astro';
+import StoryCard from '../../components/StoryCard.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const topics = await getCollection('topics');
+---
+
+<BaseLayout title="Explore Topics" currentPage="explore">
+  <div class="edition-header">
+    <div class="edition-meta">
+      <span>Explore</span>
+    </div>
+    <h1 class="edition-title" style="font-size:var(--text-4xl);">Topics</h1>
+    <p class="edition-subtitle">Deep dives across four coverage areas — World, Tech, Markets, and Culture.</p>
+  </div>
+
+  <div class="topics-grid">
+    {topics.map(topic => (
+      <a class="topic-card" href={`/topics/${topic.id.replace(/\.md$/, '')}`}>
+        <Badge variant={topic.data.badge} label={topic.data.name} />
+        <h2 class="topic-card-name">{topic.data.name}</h2>
+        <p class="topic-card-desc">{topic.data.description}</p>
+        <span class="topic-card-count">{topic.data.stories.length} stories</span>
+      </a>
+    ))}
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: var(--sp-4);
+  }
+
+  .topic-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    border: 1px solid var(--line-1);
+    border-radius: var(--radius-md);
+    padding: var(--sp-6);
+    background: var(--surface-0);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color var(--duration-fast) var(--ease-default),
+      box-shadow var(--duration-fast) var(--ease-default),
+      transform var(--duration-fast) var(--ease-default);
+  }
+  .topic-card:hover {
+    border-color: var(--line-2);
+    box-shadow: var(--sh-md);
+    transform: translateY(-1px);
+  }
+
+  .topic-card-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .topic-card-desc {
+    font-size: var(--text-sm);
+    color: var(--text-2);
+    line-height: var(--leading-normal);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .topic-card-count {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+  }
+
+  @media (max-width: 760px) {
+    .topics-grid {
+      grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    }
+  }
+</style>

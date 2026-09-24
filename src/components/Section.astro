@@ -1,0 +1,51 @@
+---
+import Icon from './Icon.astro';
+
+interface Story {
+  headline: string;
+  summary: string;
+  sourceCount: number;
+  readTime: number;
+}
+
+interface Props {
+  name: string;
+  slug: string;
+  stories: Story[];
+}
+
+const { name, slug, stories } = Astro.props;
+---
+
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-name">{name}</h2>
+    <a class="section-link" href={`/topics/${slug}`}>
+      All {name}
+      <Icon name="chevron-right" size="16" />
+    </a>
+  </div>
+  <ul class="story-list">
+    {stories.map((story) => (
+      <li class="story-item">
+        <div class="story-content">
+          <h3 class="story-headline">{story.headline}</h3>
+          <p class="story-summary">{story.summary}</p>
+          <div class="story-meta">
+            <span>{story.sourceCount} sources</span>
+            <span class="sep">·</span>
+            <span>{story.readTime} min read</span>
+          </div>
+        </div>
+        <div class="story-actions">
+          <button class="story-action-btn" title="Save">
+            <Icon name="bookmark" size="16" />
+          </button>
+          <button class="story-action-btn" title="Share">
+            <Icon name="share-2" size="16" />
+          </button>
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>
